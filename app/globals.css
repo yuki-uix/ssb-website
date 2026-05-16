@@ -1,26 +1,78 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* SSB Design Tokens */
+  --background: #0D0F12;
+  --surface: #141720;
+  --surface-card: #1A1E2A;
+  --border: rgba(59, 130, 246, 0.15);
+  --border-hover: rgba(59, 130, 246, 0.4);
+
+  --foreground: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --text-muted: #475569;
+
+  --accent-blue: #3B82F6;
+  --accent-cyan: #0EA5E9;
+  --accent-purple: #7C3AED;
+
+  /* Glow effects */
+  --glow-blue: rgba(59, 130, 246, 0.15);
+  --glow-cyan: rgba(14, 165, 233, 0.1);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-card: var(--surface-card);
+  --color-accent-blue: var(--accent-blue);
+  --color-accent-cyan: var(--accent-cyan);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Grid background utility */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(59, 130, 246, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.06) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Gradient text utility */
+.text-gradient {
+  background: linear-gradient(135deg, #3B82F6, #0EA5E9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glow border utility */
+.border-glow {
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.05), inset 0 0 20px rgba(59, 130, 246, 0.02);
+}
+
+.border-glow:hover {
+  border-color: rgba(59, 130, 246, 0.4);
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.1), inset 0 0 30px rgba(59, 130, 246, 0.03);
 }
