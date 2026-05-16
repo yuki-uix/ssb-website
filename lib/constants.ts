@@ -30,12 +30,12 @@ export const AUDIENCE_CTAS = [
 ] as const
 
 export const METRICS = [
-  { value: "340K+", label: "SKUs Network" },
-  { value: "33K sqft", label: "Owned Warehousing" },
-  { value: "10+", label: "Channels Operated" },
-  { value: "1.97M sqft", label: "Extended Network" },
-  { value: "4.32M", label: "Products in Database" },
-  { value: "7", label: "AI Agents in Production" },
+  { value: "340K+",    numericValue: 340,  suffix: "K+", decimals: 0, label: "SKUs ready to order" },
+  { value: "33K sqft", numericValue: 33,   suffix: "K",  decimals: 0, label: "sq ft owned warehouse" },
+  { value: "10+",      numericValue: 10,   suffix: "+",  decimals: 0, label: "channels operated in-house" },
+  { value: "1.97M",    numericValue: 1.97, suffix: "M",  decimals: 2, label: "sq ft distribution reach" },
+  { value: "4.32M",    numericValue: 4.32, suffix: "M",  decimals: 2, label: "products in live catalog" },
+  { value: "7",        numericValue: 7,    suffix: "",   decimals: 0, label: "AI agents running 24/7" },
 ] as const
 
 export const PILLARS = [

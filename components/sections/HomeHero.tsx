@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, ArrowBigRight } from 'lucide-react'
 import { HERO, AUDIENCE_CTAS } from '@/lib/constants'
 
 // ─── Shopping Agent Mockup ────────────────────────────────────────────────────
@@ -157,7 +157,7 @@ const fadeUp = {
   visible: (delay = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
   }),
 }
 
@@ -318,7 +318,7 @@ export default function HomeHero() {
           className="mt-16 pt-10"
           style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}
         >
-          <p className="text-xs uppercase tracking-widest mb-4" style={{ color: '#334155' }}>
+          <p className="text-xs uppercase tracking-widest mb-4" style={{ color: '#94A3B8' }}>
             Who do we serve —
           </p>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
@@ -333,14 +333,24 @@ export default function HomeHero() {
                   background: 'rgba(255,255,255,0.02)',
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(59,130,246,0.35)'
-                  e.currentTarget.style.borderLeftColor = 'rgba(59,130,246,0.85)'
-                  e.currentTarget.style.background = 'rgba(59,130,246,0.07)'
+                  e.currentTarget.style.border = '1px solid rgba(59,130,246,0.7)'
+                  e.currentTarget.style.borderLeft = '2px solid #3B82F6'
+                  e.currentTarget.style.background = 'rgba(59,130,246,0.14)'
+                  e.currentTarget.style.boxShadow = '0 0 0 1px rgba(59,130,246,0.15), inset 0 0 20px rgba(59,130,246,0.06)'
+                  const label = e.currentTarget.querySelector('span:first-child') as HTMLElement | null
+                  if (label) label.style.color = '#FFFFFF'
+                  const circle = e.currentTarget.querySelector('span:last-child') as HTMLElement | null
+                  if (circle) circle.style.background = 'rgba(59,130,246,0.45)'
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(255,255,255,0.07)'
-                  e.currentTarget.style.borderLeftColor = 'rgba(59,130,246,0.4)'
+                  e.currentTarget.style.border = '1px solid rgba(255,255,255,0.07)'
+                  e.currentTarget.style.borderLeft = '2px solid rgba(59,130,246,0.4)'
                   e.currentTarget.style.background = 'rgba(255,255,255,0.02)'
+                  e.currentTarget.style.boxShadow = 'none'
+                  const label = e.currentTarget.querySelector('span:first-child') as HTMLElement | null
+                  if (label) label.style.color = '#CBD5E1'
+                  const circle = e.currentTarget.querySelector('span:last-child') as HTMLElement | null
+                  if (circle) circle.style.background = 'rgba(59,130,246,0.14)'
                 }}
               >
                 <span
@@ -349,10 +359,17 @@ export default function HomeHero() {
                 >
                   {cta.label}
                 </span>
-                <ArrowRight
-                  className="w-4 h-4 shrink-0 transition-transform duration-200 group-hover:translate-x-0.5"
-                  style={{ color: '#3B82F6' }}
-                />
+                <span
+                  className="w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-all duration-200 group-hover:translate-x-0.5"
+                  style={{ background: 'rgba(59,130,246,0.14)' }}
+                >
+                  <ArrowBigRight
+                    className="w-4 h-4"
+                    fill="currentColor"
+                    strokeWidth={0}
+                    style={{ color: '#3B82F6' }}
+                  />
+                </span>
               </Link>
             ))}
           </div>

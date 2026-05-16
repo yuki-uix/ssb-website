@@ -1,16 +1,66 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { useRef, useEffect } from 'react'
+import { motion, useMotionValue, useSpring, useTransform, useInView } from 'framer-motion'
 import { METRICS } from '@/lib/constants'
+
+// ─── Animated counter with gradient text ─────────────────────────────────────
+
+function AnimatedStat({
+  numericValue,
+  suffix,
+  decimals,
+  index,
+}: {
+  numericValue: number
+  suffix: string
+  decimals: number
+  index: number
+}) {
+  const ref = useRef<HTMLSpanElement>(null)
+  const isInView = useInView(ref, { once: true, margin: '-60px' })
+  const motionVal = useMotionValue(0)
+  const spring = useSpring(motionVal, { stiffness: 55, damping: 22 })
+  const display = useTransform(spring, (v) =>
+    decimals > 0 ? v.toFixed(decimals) : Math.round(v).toString()
+  )
+
+  useEffect(() => {
+    if (!isInView) return
+    const timer = setTimeout(() => motionVal.set(numericValue), index * 80)
+    return () => clearTimeout(timer)
+  }, [isInView, numericValue, motionVal, index])
+
+  return (
+    <span
+      ref={ref}
+      className="font-bold tracking-tight tabular-nums leading-none"
+      style={{
+        fontSize: 'clamp(2.25rem, 3vw, 3rem)',   /* 36–48px */
+        background: 'linear-gradient(135deg, #93C5FD 0%, #38BDF8 100%)',
+        WebkitBackgroundClip: 'text',
+        WebkitTextFillColor: 'transparent',
+        backgroundClip: 'text',
+      }}
+    >
+      <motion.span>{display}</motion.span>
+      {suffix}
+    </span>
+  )
+}
+
+// ─── Stagger wrapper ──────────────────────────────────────────────────────────
 
 const fadeUp = {
   hidden: { opacity: 0, y: 16 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.5, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
   }),
 }
+
+// ─── MetricsBar ───────────────────────────────────────────────────────────────
 
 export default function MetricsBar() {
   return (
@@ -22,7 +72,20 @@ export default function MetricsBar() {
         background: 'rgba(255,255,255,0.015)',
       }}
     >
-      <div className="max-w-7xl mx-auto px-6 py-12">
+      <div className="max-w-7xl mx-auto px-6 py-14">
+
+        {/* Overline — bridges Hero claim → data proof */}
+        <p
+          className="uppercase text-center mb-10 font-medium"
+          style={{
+            fontSize: 'var(--text-overline)',
+            letterSpacing: 'var(--tracking-overline)',
+            color: '#94A3B8',
+          }}
+        >
+          The Infrastructure Behind Every Order
+        </p>
+
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
           {METRICS.map((metric, i) => (
             <motion.div
@@ -32,29 +95,30 @@ export default function MetricsBar() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: '-60px' }}
-              className="flex flex-col items-center text-center px-6 py-4"
+              className="flex flex-col items-center text-center px-4 py-4"
               style={{
                 borderLeft: i > 0 ? '1px solid rgba(255,255,255,0.07)' : 'none',
               }}
             >
-              {/* Value */}
-              <span
-                className="text-2xl xl:text-3xl font-bold tracking-tight tabular-nums"
-                style={{ color: '#60A5FA' }}
-              >
-                {metric.value}
-              </span>
+              {/* Animated gradient number */}
+              <AnimatedStat
+                numericValue={metric.numericValue}
+                suffix={metric.suffix}
+                decimals={metric.decimals}
+                index={i}
+              />
 
               {/* Label */}
               <span
-                className="text-xs mt-1.5 leading-snug"
-                style={{ color: '#64748B' }}
+                className="text-xs mt-2 leading-snug"
+                style={{ color: '#CBD5E1' }}
               >
                 {metric.label}
               </span>
             </motion.div>
           ))}
         </div>
+
       </div>
     </section>
   )
