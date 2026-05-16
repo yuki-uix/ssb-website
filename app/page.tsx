@@ -1,5 +1,6 @@
 import HomeHero from '@/components/sections/HomeHero'
 import MetricsBar from '@/components/sections/MetricsBar'
+import PillarsSection from '@/components/sections/PillarsSection'
 
 export default function HomePage() {
   return (
@@ -10,11 +11,7 @@ export default function HomePage() {
       <MetricsBar />
 
       {/* What Makes Us Different — S2.4 */}
-      <section id="pillars">
-        <div className="max-w-7xl mx-auto px-6 py-24">
-          <p className="text-[var(--text-secondary)]">What Makes Us Different — coming soon</p>
-        </div>
-      </section>
+      <PillarsSection />
 
       {/* Partner Ticker — S2.5 */}
       <section id="partners">
