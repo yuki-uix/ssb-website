@@ -1,4 +1,5 @@
 import HomeHero from '@/components/sections/HomeHero'
+import MetricsBar from '@/components/sections/MetricsBar'
 
 export default function HomePage() {
   return (
@@ -6,11 +7,7 @@ export default function HomePage() {
       <HomeHero />
 
       {/* Metrics Bar — S2.3 */}
-      <section id="metrics">
-        <div className="max-w-7xl mx-auto px-6 py-16">
-          <p className="text-[var(--text-secondary)]">Metrics Bar — coming soon</p>
-        </div>
-      </section>
+      <MetricsBar />
 
       {/* What Makes Us Different — S2.4 */}
       <section id="pillars">
