@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { ArrowRight } from 'lucide-react'
 import { HERO, AUDIENCE_CTAS } from '@/lib/constants'
 
 // ─── Shopping Agent Mockup ────────────────────────────────────────────────────
@@ -39,25 +40,25 @@ const PRODUCT_RESULTS = [
 function ShoppingAgentMockup() {
   return (
     <div
-      className="relative w-full max-w-[540px] rounded-2xl overflow-hidden"
+      className="relative w-full max-w-[520px] rounded-2xl overflow-hidden"
       style={{
-        background: '#0D1117',
-        border: '1px solid rgba(59,130,246,0.2)',
-        boxShadow: '0 0 60px rgba(59,130,246,0.07), 0 32px 80px rgba(0,0,0,0.5)',
+        background: '#111827',
+        border: '1px solid rgba(59,130,246,0.35)',
+        boxShadow: '0 0 0 1px rgba(59,130,246,0.08), 0 24px 60px rgba(0,0,0,0.6), 0 0 50px rgba(59,130,246,0.1)',
       }}
     >
       {/* Header */}
       <div
         className="flex items-center justify-between px-5 py-3.5"
-        style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}
+        style={{ background: 'rgba(255,255,255,0.03)', borderBottom: '1px solid rgba(255,255,255,0.06)' }}
       >
         <div className="flex items-center gap-2">
           <div className="w-1.5 h-1.5 rounded-full bg-[#3B82F6] animate-pulse" />
-          <span className="text-xs font-semibold text-white tracking-wide">Shopping Agent</span>
+          <span className="text-xs font-semibold tracking-wide text-white">Shopping Agent</span>
         </div>
         <span
-          className="text-[10px] px-2 py-0.5 rounded-full"
-          style={{ background: 'rgba(59,130,246,0.15)', color: '#3B82F6' }}
+          className="text-[10px] px-2 py-0.5 rounded-full font-medium"
+          style={{ background: 'rgba(59,130,246,0.15)', color: '#60A5FA' }}
         >
           5M+ SKUs
         </span>
@@ -66,58 +67,51 @@ function ShoppingAgentMockup() {
       {/* Search input */}
       <div className="px-5 py-4" style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
         <div
-          className="flex items-center gap-3 px-4 py-3 rounded-xl"
-          style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(59,130,246,0.25)' }}
+          className="flex items-center gap-3 px-4 py-2.5 rounded-xl"
+          style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(59,130,246,0.3)' }}
         >
-          <svg className="w-3.5 h-3.5 shrink-0" style={{ color: '#3B82F6' }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <svg className="w-3.5 h-3.5 shrink-0" style={{ color: '#60A5FA' }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
-          <span className="text-sm" style={{ color: '#94A3B8' }}>
+          <span className="text-sm" style={{ color: '#CBD5E1' }}>
             anti-aging skincare under $15 for B2B
           </span>
           <span
-            className="ml-auto text-xs px-2 py-0.5 rounded shrink-0"
+            className="ml-auto text-xs px-2.5 py-1 rounded-lg font-medium shrink-0"
             style={{ background: 'linear-gradient(135deg,#3B82F6,#0EA5E9)', color: '#fff' }}
           >
             Search
           </span>
         </div>
-
-        {/* Result count */}
-        <p className="text-[11px] mt-2.5 ml-1" style={{ color: '#475569' }}>
-          ✦ Showing <span style={{ color: '#3B82F6' }}>2,847 results</span> from 5M+ SKUs · Sorted by margin
+        <p className="text-[11px] mt-2.5 ml-1" style={{ color: '#64748B' }}>
+          ✦ Showing <span style={{ color: '#60A5FA', fontWeight: 600 }}>2,847 results</span> from 5M+ SKUs · Sorted by margin
         </p>
       </div>
 
       {/* Product results */}
-      <div className="px-5 py-3 space-y-2.5">
+      <div className="px-5 py-3 space-y-2">
         {PRODUCT_RESULTS.map((product) => (
           <div
             key={product.sku}
-            className="flex items-center gap-3 p-3 rounded-xl transition-colors"
-            style={{ background: 'rgba(255,255,255,0.025)', border: '1px solid rgba(255,255,255,0.04)' }}
+            className="flex items-center gap-3 p-3 rounded-xl"
+            style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}
           >
-            {/* Color block as product image placeholder */}
             <div
               className="w-9 h-9 rounded-lg shrink-0 flex items-center justify-center"
-              style={{ background: 'rgba(59,130,246,0.1)', border: '1px solid rgba(59,130,246,0.15)' }}
+              style={{ background: 'rgba(59,130,246,0.1)', border: '1px solid rgba(59,130,246,0.18)' }}
             >
-              <div className="w-4 h-4 rounded" style={{ background: 'rgba(59,130,246,0.4)' }} />
+              <div className="w-4 h-4 rounded" style={{ background: 'rgba(59,130,246,0.45)' }} />
             </div>
-
-            {/* Product info */}
             <div className="flex-1 min-w-0">
-              <p className="text-xs font-medium text-white truncate">{product.name}</p>
-              <p className="text-[10px] mt-0.5" style={{ color: '#475569' }}>
+              <p className="text-xs font-semibold truncate text-white">{product.name}</p>
+              <p className="text-[10px] mt-0.5 font-mono" style={{ color: '#64748B' }}>
                 {product.brand} · {product.sku}
               </p>
             </div>
-
-            {/* Price + badge */}
             <div className="text-right shrink-0">
               <p className="text-sm font-bold text-white">{product.price}</p>
               <span
-                className="text-[9px] px-1.5 py-0.5 rounded-full"
+                className="text-[9px] px-1.5 py-0.5 rounded-full font-medium"
                 style={{ background: `${product.badgeColor}20`, color: product.badgeColor }}
               >
                 {product.badge}
@@ -129,20 +123,27 @@ function ShoppingAgentMockup() {
 
       {/* Footer — PO ready */}
       <div
-        className="mx-5 mb-5 mt-2 flex items-center justify-between px-4 py-3 rounded-xl"
+        className="mx-5 mb-4 mt-2 flex items-center justify-between px-4 py-3 rounded-xl"
         style={{ background: 'rgba(59,130,246,0.08)', border: '1px solid rgba(59,130,246,0.2)' }}
       >
         <div className="flex items-center gap-2">
           <div className="w-1.5 h-1.5 rounded-full bg-[#10B981]" />
           <span className="text-xs" style={{ color: '#94A3B8' }}>
-            Consolidated PO ready · <span className="text-white">3 suppliers</span>
+            Consolidated PO ready · <span className="text-white font-semibold">3 suppliers</span>
           </span>
         </div>
-        <span
-          className="text-xs font-semibold"
-          style={{ color: '#3B82F6' }}
-        >
+        <span className="text-xs font-semibold" style={{ color: '#60A5FA' }}>
           Order Now →
+        </span>
+      </div>
+
+      {/* Powered by */}
+      <div className="px-5 pb-4 flex items-center gap-1.5">
+        <svg className="w-3 h-3 shrink-0" style={{ color: '#334155' }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+        <span className="text-[10px]" style={{ color: '#334155' }}>
+          Powered by SSB AI · Real-time catalog sync across 5M+ SKUs
         </span>
       </div>
     </div>
@@ -165,33 +166,31 @@ const fadeUp = {
 export default function HomeHero() {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background grid */}
-      <div className="absolute inset-0 bg-grid opacity-60" />
+      {/* Background grid — subtle, left side only */}
+      <div className="absolute inset-0 bg-grid opacity-30" />
 
-      {/* Blue orb — top right */}
-      <div
-        className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full pointer-events-none"
-        style={{
-          background: 'radial-gradient(circle, rgba(59,130,246,0.12) 0%, transparent 70%)',
-          filter: 'blur(40px)',
-        }}
-      />
-      {/* Cyan orb — center right */}
-      <div
-        className="absolute top-1/2 right-0 w-[400px] h-[400px] rounded-full pointer-events-none"
-        style={{
-          background: 'radial-gradient(circle, rgba(14,165,233,0.08) 0%, transparent 70%)',
-          filter: 'blur(60px)',
-          transform: 'translateY(-50%)',
-        }}
-      />
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 w-full py-32">
+
+        {/* Hero row — Text + Shopping Agent */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
-          {/* Left — Text */}
-          <div className="flex flex-col">
+          {/* Left — Text + primary CTA */}
+          <div className="relative flex flex-col">
+            {/* CTA glow — sits behind the button area */}
+            <div
+              className="absolute pointer-events-none"
+              style={{
+                bottom: '-20px',
+                left: '-40px',
+                width: '320px',
+                height: '200px',
+                borderRadius: '50%',
+                background: 'radial-gradient(circle, rgba(59,130,246,0.13) 0%, transparent 70%)',
+                filter: 'blur(32px)',
+              }}
+            />
 
             {/* Badge */}
             <motion.div
@@ -223,7 +222,7 @@ export default function HomeHero() {
             >
               A New Kind of
               <br />
-              <span className="text-gradient">Brand Distributor.</span>
+              <span className="text-gradient-animate">Brand Distributor.</span>
             </motion.h1>
 
             {/* Subheadline */}
@@ -232,68 +231,133 @@ export default function HomeHero() {
               initial="hidden"
               animate="visible"
               custom={0.2}
-              className="text-base lg:text-lg leading-relaxed mb-10 max-w-xl"
+              className="text-base lg:text-lg leading-relaxed mb-8 max-w-xl"
               style={{ color: '#94A3B8' }}
             >
               {HERO.subheadline}
             </motion.p>
 
-            {/* Audience CTAs */}
+            {/* Primary CTA */}
             <motion.div
               variants={fadeUp}
               initial="hidden"
               animate="visible"
               custom={0.3}
+              className="flex items-center gap-4"
             >
-              <p className="text-xs uppercase tracking-widest mb-4" style={{ color: '#475569' }}>
-                I am a —
-              </p>
-              <div className="grid grid-cols-2 gap-3">
-                {AUDIENCE_CTAS.map((cta) => (
-                  <Link
-                    key={cta.href}
-                    href={cta.href}
-                    className="group flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200"
-                    style={{
-                      border: '1px solid rgba(255,255,255,0.08)',
-                      color: '#CBD5E1',
-                      background: 'rgba(255,255,255,0.03)',
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.borderColor = 'rgba(59,130,246,0.4)'
-                      e.currentTarget.style.background = 'rgba(59,130,246,0.08)'
-                      e.currentTarget.style.color = '#FFFFFF'
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'
-                      e.currentTarget.style.background = 'rgba(255,255,255,0.03)'
-                      e.currentTarget.style.color = '#CBD5E1'
-                    }}
-                  >
-                    {cta.label}
-                    <span
-                      className="text-[#3B82F6] transition-transform duration-200 group-hover:translate-x-0.5"
-                    >
-                      →
-                    </span>
-                  </Link>
-                ))}
-              </div>
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold text-white transition-all duration-200"
+                style={{ background: 'linear-gradient(135deg, #3B82F6, #0EA5E9)' }}
+                onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.9' }}
+                onMouseLeave={(e) => { e.currentTarget.style.opacity = '1' }}
+              >
+                Get in Touch
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link
+                href="/technology"
+                className="text-sm font-medium transition-colors duration-200"
+                style={{ color: '#64748B' }}
+                onMouseEnter={(e) => { e.currentTarget.style.color = '#94A3B8' }}
+                onMouseLeave={(e) => { e.currentTarget.style.color = '#64748B' }}
+              >
+                Explore Platform →
+              </Link>
             </motion.div>
           </div>
 
-          {/* Right — Dashboard */}
+          {/* Right — Shopping Agent */}
           <motion.div
             variants={fadeUp}
             initial="hidden"
             animate="visible"
             custom={0.2}
-            className="hidden lg:flex justify-end"
+            className="relative hidden lg:flex justify-end"
           >
+            {/* Cyan orb — top-right of card */}
+            <div
+              className="absolute pointer-events-none"
+              style={{
+                top: '-60px',
+                right: '-40px',
+                width: '420px',
+                height: '420px',
+                borderRadius: '50%',
+                background: 'radial-gradient(circle, rgba(14,165,233,0.22) 0%, rgba(59,130,246,0.1) 45%, transparent 70%)',
+                filter: 'blur(36px)',
+              }}
+            />
+            {/* Grid overlay — follows card position */}
+            <div
+              className="absolute pointer-events-none"
+              style={{
+                top: '-80px',
+                right: '-60px',
+                width: '560px',
+                height: '560px',
+                backgroundImage: `
+                  linear-gradient(rgba(59,130,246,0.25) 1px, transparent 1px),
+                  linear-gradient(90deg, rgba(59,130,246,0.25) 1px, transparent 1px)
+                `,
+                backgroundSize: '40px 40px',
+                maskImage: 'radial-gradient(ellipse 70% 65% at 65% 35%, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.35) 55%, transparent 72%)',
+                WebkitMaskImage: 'radial-gradient(ellipse 70% 65% at 65% 35%, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.35) 55%, transparent 72%)',
+              }}
+            />
             <ShoppingAgentMockup />
           </motion.div>
-
         </div>
+
+        {/* Audience routing strip */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          custom={0.4}
+          className="mt-16 pt-10"
+          style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}
+        >
+          <p className="text-xs uppercase tracking-widest mb-4" style={{ color: '#334155' }}>
+            Who do we serve —
+          </p>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+            {AUDIENCE_CTAS.map((cta) => (
+              <Link
+                key={cta.href}
+                href={cta.href}
+                className="group flex items-center justify-between px-5 py-4 rounded-xl transition-all duration-200"
+                style={{
+                  border: '1px solid rgba(255,255,255,0.07)',
+                  borderLeft: '2px solid rgba(59,130,246,0.4)',
+                  background: 'rgba(255,255,255,0.02)',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(59,130,246,0.35)'
+                  e.currentTarget.style.borderLeftColor = 'rgba(59,130,246,0.85)'
+                  e.currentTarget.style.background = 'rgba(59,130,246,0.07)'
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(255,255,255,0.07)'
+                  e.currentTarget.style.borderLeftColor = 'rgba(59,130,246,0.4)'
+                  e.currentTarget.style.background = 'rgba(255,255,255,0.02)'
+                }}
+              >
+                <span
+                  className="text-sm font-semibold"
+                  style={{ color: '#CBD5E1' }}
+                >
+                  {cta.label}
+                </span>
+                <ArrowRight
+                  className="w-4 h-4 shrink-0 transition-transform duration-200 group-hover:translate-x-0.5"
+                  style={{ color: '#3B82F6' }}
+                />
+              </Link>
+            ))}
+          </div>
+        </motion.div>
+
       </div>
     </section>
   )
