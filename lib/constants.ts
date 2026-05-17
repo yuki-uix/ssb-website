@@ -38,6 +38,7 @@ export const METRICS = [
   { value: "7",        numericValue: 7,    suffix: "",   decimals: 0, label: "AI agents running 24/7" },
 ] as const
 
+
 export const PILLARS = [
   {
     icon: "store",
