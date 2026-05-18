@@ -83,7 +83,7 @@ function ShoppingAgentMockup() {
             Search
           </span>
         </div>
-        <p className="text-[11px] mt-2.5 ml-1" style={{ color: '#64748B' }}>
+        <p className="text-[11px] mt-2.5 ml-1" style={{ color: '#94A3B8' }}>
           ✦ Showing <span style={{ color: '#60A5FA', fontWeight: 600 }}>2,847 results</span> from 5M+ SKUs · Sorted by margin
         </p>
       </div>
@@ -104,7 +104,7 @@ function ShoppingAgentMockup() {
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-xs font-semibold truncate text-white">{product.name}</p>
-              <p className="text-[10px] mt-0.5 font-mono" style={{ color: '#64748B' }}>
+              <p className="text-[10px] mt-0.5 font-mono" style={{ color: '#94A3B8' }}>
                 {product.brand} · {product.sku}
               </p>
             </div>
@@ -139,10 +139,10 @@ function ShoppingAgentMockup() {
 
       {/* Powered by */}
       <div className="px-5 pb-4 flex items-center gap-1.5">
-        <svg className="w-3 h-3 shrink-0" style={{ color: '#334155' }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <svg className="w-3 h-3 shrink-0" style={{ color: '#64748B' }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
         </svg>
-        <span className="text-[10px]" style={{ color: '#334155' }}>
+        <span className="text-[10px]" style={{ color: '#94A3B8' }}>
           Powered by SSB AI · Real-time catalog sync across 5M+ SKUs
         </span>
       </div>
@@ -232,7 +232,7 @@ export default function HomeHero() {
               animate="visible"
               custom={0.2}
               className="text-base lg:text-lg leading-relaxed mb-8 max-w-xl"
-              style={{ color: '#94A3B8' }}
+              style={{ color: '#CBD5E1' }}
             >
               {HERO.subheadline}
             </motion.p>
@@ -258,9 +258,9 @@ export default function HomeHero() {
               <Link
                 href="/technology"
                 className="text-sm font-medium transition-colors duration-200"
-                style={{ color: '#64748B' }}
-                onMouseEnter={(e) => { e.currentTarget.style.color = '#94A3B8' }}
-                onMouseLeave={(e) => { e.currentTarget.style.color = '#64748B' }}
+                style={{ color: '#94A3B8' }}
+                onMouseEnter={(e) => { e.currentTarget.style.color = '#CBD5E1' }}
+                onMouseLeave={(e) => { e.currentTarget.style.color = '#94A3B8' }}
               >
                 Explore Platform →
               </Link>

@@ -15,7 +15,7 @@ const fadeUp = {
 
 export default function ForBrandsHero() {
   return (
-    <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden py-16">
       {/* Ambient glow */}
       <div
         className="absolute inset-0 pointer-events-none"
@@ -25,7 +25,7 @@ export default function ForBrandsHero() {
         }}
       />
 
-      <div className="relative z-10 max-w-4xl mx-auto px-6 py-32 text-center">
+      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
 
         {/* Pill badge */}
         <motion.div

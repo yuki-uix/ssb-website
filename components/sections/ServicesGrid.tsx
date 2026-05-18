@@ -96,8 +96,8 @@ export default function ServicesGrid() {
             style={{
               fontSize: 'var(--text-h2)',
               color: '#FFFFFF',
-              lineHeight: 'var(--leading-h1)',
-              letterSpacing: 'var(--tracking-h1)',
+              lineHeight: 'var(--leading-h2)',
+              letterSpacing: 'var(--tracking-h2)',
             }}
           >
             Six Ways We Work<br />For Your Brand.

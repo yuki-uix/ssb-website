@@ -4,17 +4,20 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 
-export default function HomeCTA() {
+const ease = [0.22, 1, 0.36, 1] as [number, number, number, number]
+
+export default function ForBrandsCTA() {
   return (
     <section
       className="relative overflow-hidden"
       style={{ borderTop: '1px solid rgba(59,130,246,0.12)' }}
     >
-      {/* Ambient radial glow */}
+      {/* Ambient glow */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'radial-gradient(ellipse 80% 60% at 50% 100%, rgba(59,130,246,0.1) 0%, transparent 70%)',
+          background:
+            'radial-gradient(ellipse 80% 60% at 50% 100%, rgba(59,130,246,0.1) 0%, transparent 70%)',
         }}
       />
 
@@ -25,7 +28,7 @@ export default function HomeCTA() {
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
+          transition={{ duration: 0.5, ease }}
           className="uppercase font-medium mb-5"
           style={{
             fontSize: 'var(--text-overline)',
@@ -33,7 +36,7 @@ export default function HomeCTA() {
             color: '#94A3B8',
           }}
         >
-          Get Started
+          Next Step
         </motion.p>
 
         {/* Headline */}
@@ -41,17 +44,17 @@ export default function HomeCTA() {
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.55, delay: 0.06, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
-          className="font-bold mb-5"
+          transition={{ duration: 0.55, ease }}
+          className="font-bold mb-10"
           style={{
             fontSize: 'var(--text-h1)',
             color: '#FFFFFF',
-            maxWidth: '640px',
+            maxWidth: '680px',
             lineHeight: 'var(--leading-h1)',
             letterSpacing: 'var(--tracking-h1)',
           }}
         >
-          Ready to move products smarter?
+          Want to know which channels are right for your brand?
         </motion.h2>
 
         {/* Sub-headline */}
@@ -59,7 +62,7 @@ export default function HomeCTA() {
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.55, delay: 0.12, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
+          transition={{ duration: 0.55, delay: 0.08, ease }}
           className="mb-10"
           style={{
             fontSize: 'var(--text-body)',
@@ -68,7 +71,7 @@ export default function HomeCTA() {
             lineHeight: 'var(--leading-body)',
           }}
         >
-          Tell us what you need — we'll map out the right channel strategy for you.
+          Tell us which markets matter most and we'll build your channel strategy.
         </motion.p>
 
         {/* CTA Button */}
@@ -76,7 +79,7 @@ export default function HomeCTA() {
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
+          transition={{ duration: 0.5, delay: 0.18, ease }}
         >
           <Link
             href="/contact"
@@ -97,7 +100,7 @@ export default function HomeCTA() {
               e.currentTarget.style.transform = 'translateY(0)'
             }}
           >
-            Get in Touch
+            Book a Brand Consultation
             <ArrowRight className="w-4 h-4" />
           </Link>
         </motion.div>
