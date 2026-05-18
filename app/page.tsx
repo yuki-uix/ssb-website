@@ -1,7 +1,7 @@
-import HomeHero from '@/components/sections/HomeHero'
-import MetricsBar from '@/components/sections/MetricsBar'
-import PillarsSection from '@/components/sections/PillarsSection'
-import HomeCTA from '@/components/sections/HomeCTA'
+import HomeHero from '@/components/sections/home/HomeHero'
+import MetricsBar from '@/components/sections/shared/MetricsBar'
+import PillarsSection from '@/components/sections/shared/PillarsSection'
+import HomeCTA from '@/components/sections/home/HomeCTA'
 
 export default function HomePage() {
   return (

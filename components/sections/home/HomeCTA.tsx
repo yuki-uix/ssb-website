@@ -1,6 +1,6 @@
 'use client'
 
-import { PageCTA } from '@/components/sections/PageCTA'
+import { PageCTA } from '@/components/sections/shared/PageCTA'
 import { HERO } from '@/lib/constants'
 
 export default function HomeCTA() {

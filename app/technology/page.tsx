@@ -1,7 +1,7 @@
-import TechHero from '@/components/sections/TechHero'
-import TechMetricsBar from '@/components/sections/TechMetricsBar'
-import AIAgentCards from '@/components/sections/AIAgentCards'
-import TechCTA from '@/components/sections/TechCTA'
+import TechHero from '@/components/sections/technology/TechHero'
+import TechMetricsBar from '@/components/sections/technology/TechMetricsBar'
+import AIAgentCards from '@/components/sections/technology/AIAgentCards'
+import TechCTA from '@/components/sections/technology/TechCTA'
 
 export default function TechnologyPage() {
   return (
