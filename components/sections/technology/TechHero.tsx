@@ -1,18 +1,69 @@
 'use client'
 
+import { useRef } from 'react'
 import { motion } from 'framer-motion'
 import { TECH_HERO } from '@/lib/constants'
 import { fadeUp } from '@/lib/animations'
+import { useBouncingOrb } from '@/lib/hooks'
 
 export default function TechHero() {
+  const containerRef = useRef<HTMLElement>(null)
+
+  const { x: x1, y: y1 } = useBouncingOrb(containerRef, {
+    orbSize: 760,
+    initialX: 0.0,
+    initialY: 0.0,
+    speedX: 60,
+    speedY: 50,
+  })
+  const { x: x2, y: y2 } = useBouncingOrb(containerRef, {
+    orbSize: 600,
+    initialX: 1.0,
+    initialY: 1.0,
+    speedX: -60,
+    speedY: -50,
+  })
+
   return (
-    <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden bg-grid py-16">
-      {/* Radial glow — centered behind headline */}
+    <section ref={containerRef} className="relative min-h-[80vh] flex items-center justify-center overflow-hidden bg-grid py-16">
+      {/* Static ambient background glow */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
             'radial-gradient(ellipse 60% 50% at 50% 0%, rgba(59,130,246,0.18) 0%, transparent 70%)',
+        }}
+      />
+
+      {/* Bouncing orb 1 */}
+      <motion.div
+        className="absolute pointer-events-none"
+        style={{
+          top: 0,
+          left: 0,
+          x: x1,
+          y: y1,
+          width: '760px',
+          height: '760px',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(59,130,246,0.18) 0%, rgba(14,165,233,0.07) 45%, transparent 65%)',
+          filter: 'blur(48px)',
+        }}
+      />
+
+      {/* Bouncing orb 2 */}
+      <motion.div
+        className="absolute pointer-events-none"
+        style={{
+          top: 0,
+          left: 0,
+          x: x2,
+          y: y2,
+          width: '600px',
+          height: '600px',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(14,165,233,0.12) 0%, rgba(59,130,246,0.05) 50%, transparent 70%)',
+          filter: 'blur(56px)',
         }}
       />
 

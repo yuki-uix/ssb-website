@@ -29,3 +29,17 @@ export const fadeUpSubtle = {
     transition: { duration: 0.5, delay: i * 0.08, ease },
   }),
 }
+
+/**
+ * Ambient glow orb float — shared across all three Hero pages.
+ * Spread onto a motion.div: <motion.div {...floatingGlow} ...>
+ * MotionProvider's reducedMotion="user" disables this automatically.
+ */
+/**
+ * Used on HomeHero's cyan orb (right side, near the agent card).
+ * ForBrands / Technology Hero use useBouncingOrb() instead.
+ */
+export const floatingGlow = {
+  animate: { y: [0, -30, 0] },
+  transition: { duration: 5, repeat: Infinity, ease: 'easeInOut' as const },
+}
