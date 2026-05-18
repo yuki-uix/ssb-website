@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { Store, Warehouse, ShieldCheck, LucideIcon } from 'lucide-react'
 import { PILLARS } from '@/lib/constants'
+import { ease } from '@/lib/animations'
 
 // ─── Icon map ────────────────────────────────────────────────────────────────
 
@@ -34,7 +35,7 @@ function PillarCard({
           transition: {
             duration: 0.55,
             delay: index * 0.12,
-            ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
+            ease,
           },
         },
       }}
@@ -134,7 +135,7 @@ export default function PillarsSection() {
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
+          transition={{ duration: 0.5, ease }}
           className="mb-14"
         >
           <p

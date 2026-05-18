@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { Globe, Store, Map, PackageOpen, ShoppingCart, ShieldCheck } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
+import { fadeUp } from '@/lib/animations'
 
 interface Service {
   icon: LucideIcon
@@ -54,15 +55,6 @@ const SERVICES: Service[] = [
     colSpan: 2,
   },
 ]
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (delay = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, delay, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
-  }),
-}
 
 export default function ServicesGrid() {
   return (
@@ -120,7 +112,7 @@ export default function ServicesGrid() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: '-40px' }}
-              custom={i * 0.07}
+              custom={i}
               className={`group relative flex flex-col gap-4 p-8 transition-colors duration-200${
                 service.colSpan === 2 ? ' md:col-span-2 lg:col-span-2' : ''
               }`}

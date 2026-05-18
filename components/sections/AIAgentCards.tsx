@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { AI_AGENTS } from '@/lib/constants'
+import { fadeUp, ease } from '@/lib/animations'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -12,19 +13,6 @@ type Agent = {
   description: string
   bullets: readonly string[]
   placeholder?: boolean
-}
-
-// ─── Animation ────────────────────────────────────────────────────────────────
-
-const ease = [0.22, 1, 0.36, 1] as [number, number, number, number]
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, delay: i * 0.07, ease },
-  }),
 }
 
 // ─── AgentCard ────────────────────────────────────────────────────────────────
@@ -69,7 +57,7 @@ function AgentCard({ agent, index, featured = false }: { agent: Agent; index: nu
         className="font-bold mb-1"
         style={{
           fontSize: featured ? 'clamp(1.25rem, 2vw, 1.5rem)' : '1.125rem',
-          color: isPlaceholder ? '#475569' : '#FFFFFF',
+          color: isPlaceholder ? '#94A3B8' : '#FFFFFF',
           letterSpacing: '-0.01em',
         }}
       >
@@ -79,7 +67,7 @@ function AgentCard({ agent, index, featured = false }: { agent: Agent; index: nu
       {/* Tagline */}
       <p
         className="mb-3 text-sm font-medium"
-        style={{ color: isPlaceholder ? '#475569' : '#CBD5E1' }}
+        style={{ color: isPlaceholder ? '#94A3B8' : '#CBD5E1' }}
       >
         {agent.tagline}
       </p>
@@ -176,13 +164,10 @@ export default function AIAgentCards() {
           <AgentCard agent={featured} index={0} featured />
         </div>
 
-        {/* Row 2–3: Remaining 6 in 3-col */}
+        {/* Row 2–3: Remaining 6 — responsive cols */}
         <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: '1px',
-          }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+          style={{ gap: '1px' }}
         >
           {rest.map((agent, i) => (
             <AgentCard key={agent.name} agent={agent} index={i + 1} />
