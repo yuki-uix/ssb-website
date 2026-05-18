@@ -1,7 +1,7 @@
 'use client'
 
-import Image from 'next/image'
 import Link from 'next/link'
+import { useState } from 'react'
 
 const SOLUTIONS = [
   { label: 'For Brands',               href: '/for-brands' },
@@ -15,7 +15,22 @@ const COMPANY = [
   { label: 'Contact',    href: '/contact' },
 ]
 
+const labelStyle = {
+  fontSize: 'var(--text-overline)',
+  letterSpacing: 'var(--tracking-overline)',
+  color: '#94A3B8',
+}
+const linkStyle = { fontSize: 'var(--text-label)', color: '#CBD5E1' }
+
 export default function Footer() {
+  const [copied, setCopied] = useState(false)
+
+  function copyWeChat() {
+    navigator.clipboard.writeText('Haoruiiii')
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
+
   return (
     <footer
       style={{
@@ -23,132 +38,85 @@ export default function Footer() {
         background: 'rgba(255,255,255,0.01)',
       }}
     >
-      {/* Main footer grid */}
-      <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-[1.5fr_1fr_1fr_1fr]">
+      <div className="max-w-7xl mx-auto px-6 py-10">
+        <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
 
-          {/* Brand column */}
-          <div className="flex flex-col gap-5">
-            <Link href="/" className="shrink-0 w-fit">
-              <Image
-                src="/logo.png"
-                alt="Supersonic Supply"
-                width={130}
-                height={30}
-                style={{ objectFit: 'contain', objectPosition: 'left' }}
-              />
-            </Link>
-            <p
-              style={{
-                fontSize: 'var(--text-body-sm)',
-                color: '#94A3B8',
-                lineHeight: 'var(--leading-body)',
-                maxWidth: '280px',
-              }}
-            >
-              A vertically integrated operator that owns the entire path from your dock to the consumer's doorstep.
-            </p>
-          </div>
-
-          {/* Solutions */}
-          <div>
-            <p
-              className="uppercase font-medium mb-5"
-              style={{
-                fontSize: 'var(--text-overline)',
-                letterSpacing: 'var(--tracking-overline)',
-                color: '#94A3B8',
-              }}
-            >
+          {/* Solutions — horizontal pill row */}
+          <div className="flex flex-col gap-3">
+            <p className="uppercase font-medium" style={labelStyle}>
               Solutions
             </p>
-            <ul className="flex flex-col gap-3">
+            <div className="flex flex-wrap gap-x-6 gap-y-2">
               {SOLUTIONS.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="transition-colors duration-150"
-                    style={{ fontSize: 'var(--text-label)', color: '#94A3B8' }}
-                    onMouseEnter={(e) => { e.currentTarget.style.color = '#CBD5E1' }}
-                    onMouseLeave={(e) => { e.currentTarget.style.color = '#94A3B8' }}
-                  >
-                    {link.label}
-                  </Link>
-                </li>
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="transition-colors duration-150"
+                  style={linkStyle}
+                  onMouseEnter={(e) => { e.currentTarget.style.color = '#FFFFFF' }}
+                  onMouseLeave={(e) => { e.currentTarget.style.color = '#CBD5E1' }}
+                >
+                  {link.label}
+                </Link>
               ))}
-            </ul>
+            </div>
           </div>
 
           {/* Company */}
-          <div>
-            <p
-              className="uppercase font-medium mb-5"
-              style={{
-                fontSize: 'var(--text-overline)',
-                letterSpacing: 'var(--tracking-overline)',
-                color: '#94A3B8',
-              }}
-            >
+          <div className="flex flex-col gap-3">
+            <p className="uppercase font-medium" style={labelStyle}>
               Company
             </p>
-            <ul className="flex flex-col gap-3">
+            <div className="flex gap-6">
               {COMPANY.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="transition-colors duration-150"
-                    style={{ fontSize: 'var(--text-label)', color: '#94A3B8' }}
-                    onMouseEnter={(e) => { e.currentTarget.style.color = '#CBD5E1' }}
-                    onMouseLeave={(e) => { e.currentTarget.style.color = '#94A3B8' }}
-                  >
-                    {link.label}
-                  </Link>
-                </li>
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="transition-colors duration-150"
+                  style={linkStyle}
+                  onMouseEnter={(e) => { e.currentTarget.style.color = '#FFFFFF' }}
+                  onMouseLeave={(e) => { e.currentTarget.style.color = '#CBD5E1' }}
+                >
+                  {link.label}
+                </Link>
               ))}
-            </ul>
+            </div>
           </div>
 
           {/* Contact */}
-          <div>
-            <p
-              className="uppercase font-medium mb-5"
-              style={{
-                fontSize: 'var(--text-overline)',
-                letterSpacing: 'var(--tracking-overline)',
-                color: '#94A3B8',
-              }}
-            >
+          <div className="flex flex-col gap-3">
+            <p className="uppercase font-medium" style={labelStyle}>
               Contact
             </p>
-            <ul className="flex flex-col gap-3">
-              <li>
-                <a
-                  href="mailto:ai@supersonicbrick.com"
-                  className="transition-colors duration-150"
-                  style={{ fontSize: 'var(--text-label)', color: '#94A3B8' }}
-                  onMouseEnter={(e) => { e.currentTarget.style.color = '#60A5FA' }}
-                  onMouseLeave={(e) => { e.currentTarget.style.color = '#94A3B8' }}
-                >
-                  ai@supersonicbrick.com
-                </a>
-              </li>
-              <li
-                style={{ fontSize: 'var(--text-label)', color: '#94A3B8' }}
+            <div className="flex flex-col gap-2">
+              <a
+                href="mailto:ai@supersonicbrick.com"
+                className="transition-colors duration-150"
+                style={linkStyle}
+                onMouseEnter={(e) => { e.currentTarget.style.color = '#60A5FA' }}
+                onMouseLeave={(e) => { e.currentTarget.style.color = '#CBD5E1' }}
               >
-                WeChat: Haoruiiii
-              </li>
-            </ul>
+                ai@supersonicbrick.com
+              </a>
+              <button
+                onClick={copyWeChat}
+                className="transition-colors duration-150 text-left"
+                style={{ ...linkStyle, cursor: 'copy' }}
+                onMouseEnter={(e) => { e.currentTarget.style.color = '#FFFFFF' }}
+                onMouseLeave={(e) => { e.currentTarget.style.color = '#CBD5E1' }}
+              >
+                {copied ? 'Copied!' : 'WeChat: Haoruiiii'}
+              </button>
+            </div>
           </div>
 
         </div>
       </div>
 
       {/* Copyright bar */}
-      <div
-        style={{ borderTop: '1px solid rgba(255,255,255,0.05)' }}
-      >
+      <div style={{ borderTop: '1px solid rgba(255,255,255,0.05)' }}>
         <div
-          className="max-w-7xl mx-auto px-6 py-5"
+          className="max-w-7xl mx-auto px-6 py-4"
           style={{ fontSize: 'var(--text-caption)', color: '#64748B' }}
         >
           © 2026 Supersonic Brick LLC. All rights reserved.
