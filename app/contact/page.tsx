@@ -28,10 +28,10 @@ export default function ContactPage() {
       <p style={{ fontSize: 'var(--text-body)', color: '#94A3B8', maxWidth: '440px' }}>
         This page is coming soon. In the meantime, reach us at{' '}
         <a
-          href="mailto:hello@supersonicbrick.com"
+          href="mailto:ai@supersonicbrick.com"
           style={{ color: '#60A5FA', textDecoration: 'underline' }}
         >
-          hello@supersonicbrick.com
+          ai@supersonicbrick.com
         </a>
       </p>
     </main>
