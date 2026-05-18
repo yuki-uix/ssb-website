@@ -39,18 +39,17 @@ function AgentCard({ agent, index, featured = false }: { agent: Agent; index: nu
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-60px' }}
-      className="group relative flex flex-col p-6 h-full"
+      className={`${isPlaceholder ? '' : 'group '}relative flex flex-col p-6 h-full`}
       style={{
         background: isPlaceholder ? 'rgba(255,255,255,0.012)' : 'var(--background)',
         boxShadow: featured ? 'inset 0 2px 0 #3B82F6' : 'inset 0 2px 0 rgba(59,130,246,0.25)',
         opacity: isPlaceholder ? 0.6 : 1,
+        cursor: isPlaceholder ? 'default' : 'auto',
       }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.background = 'rgba(59,130,246,0.06)'
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.background = isPlaceholder ? 'rgba(255,255,255,0.012)' : 'var(--background)'
-      }}
+      {...(!isPlaceholder && {
+        onMouseEnter: (e) => { e.currentTarget.style.background = 'rgba(59,130,246,0.06)' },
+        onMouseLeave: (e) => { e.currentTarget.style.background = 'var(--background)' },
+      })}
     >
       {/* Category badge */}
       <span
@@ -114,11 +113,13 @@ function AgentCard({ agent, index, featured = false }: { agent: Agent; index: nu
         </ul>
       )}
 
-      {/* Bottom accent on hover */}
-      <div
-        className="absolute bottom-0 left-0 h-px w-0 group-hover:w-full transition-all duration-300"
-        style={{ background: '#3B82F6' }}
-      />
+      {/* Bottom accent on hover — disabled for placeholder cards */}
+      {!isPlaceholder && (
+        <div
+          className="absolute bottom-0 left-0 h-px w-0 group-hover:w-full transition-all duration-300"
+          style={{ background: '#3B82F6' }}
+        />
+      )}
     </motion.div>
   )
 }
