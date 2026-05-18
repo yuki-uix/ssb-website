@@ -93,7 +93,7 @@ export default function ForBrandsHero() {
           className="mb-10 mx-auto"
           style={{
             fontSize: 'var(--text-body)',
-            color: '#94A3B8',
+            color: '#CBD5E1',
             lineHeight: 'var(--leading-body)',
             maxWidth: '600px',
           }}

@@ -122,7 +122,7 @@ export default function ServicesGrid() {
               viewport={{ once: true, margin: '-40px' }}
               custom={i * 0.07}
               className={`group relative flex flex-col gap-4 p-8 transition-colors duration-200${
-                service.colSpan === 2 ? ' lg:col-span-2' : ''
+                service.colSpan === 2 ? ' md:col-span-2 lg:col-span-2' : ''
               }`}
               style={{
                 background: 'var(--background)',

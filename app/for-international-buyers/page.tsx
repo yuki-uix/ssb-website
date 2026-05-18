@@ -1,11 +1,39 @@
 export default function ForInternationalBuyersPage() {
   return (
-    <main className="min-h-screen" style={{ background: 'var(--background)' }}>
-      <section className="pt-32 pb-24">
-        <div className="max-w-7xl mx-auto px-6">
-          <p className="text-[var(--text-secondary)]">For International Buyers — coming soon</p>
-        </div>
-      </section>
+    <main
+      className="min-h-screen flex flex-col items-center justify-center text-center px-6"
+      style={{ background: 'var(--background)' }}
+    >
+      <p
+        className="uppercase font-medium mb-4"
+        style={{
+          fontSize: 'var(--text-overline)',
+          letterSpacing: 'var(--tracking-overline)',
+          color: '#94A3B8',
+        }}
+      >
+        For International Buyers
+      </p>
+      <h1
+        className="font-bold mb-4"
+        style={{
+          fontSize: 'var(--text-h1)',
+          color: '#FFFFFF',
+          lineHeight: 'var(--leading-h1)',
+          letterSpacing: 'var(--tracking-h1)',
+        }}
+      >
+        US Products.<br />Global Reach.
+      </h1>
+      <p style={{ fontSize: 'var(--text-body)', color: '#94A3B8', maxWidth: '440px' }}>
+        This page is coming soon. In the meantime, reach us at{' '}
+        <a
+          href="mailto:ai@supersonicbrick.com"
+          style={{ color: '#60A5FA', textDecoration: 'underline' }}
+        >
+          ai@supersonicbrick.com
+        </a>
+      </p>
     </main>
   )
 }

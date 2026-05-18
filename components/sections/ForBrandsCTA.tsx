@@ -47,11 +47,11 @@ export default function ForBrandsCTA() {
           transition={{ duration: 0.55, ease }}
           className="font-bold mb-10"
           style={{
-            fontSize: 'var(--text-h1)',
+            fontSize: 'var(--text-h2)',
             color: '#FFFFFF',
             maxWidth: '680px',
-            lineHeight: 'var(--leading-h1)',
-            letterSpacing: 'var(--tracking-h1)',
+            lineHeight: 'var(--leading-h2)',
+            letterSpacing: 'var(--tracking-h2)',
           }}
         >
           Want to know which channels are right for your brand?
