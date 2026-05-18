@@ -1,17 +1,8 @@
 'use client'
 
 import { motion } from 'framer-motion'
-
-const ease = [0.22, 1, 0.36, 1] as [number, number, number, number]
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (delay = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.55, delay, ease },
-  }),
-}
+import { TECH_HERO } from '@/lib/constants'
+import { fadeUp } from '@/lib/animations'
 
 export default function TechHero() {
   return (
@@ -43,7 +34,7 @@ export default function TechHero() {
               background: 'rgba(59,130,246,0.08)',
             }}
           >
-            ✦ 7 AI Agents in Production
+            ✦ {TECH_HERO.badge}
           </span>
         </motion.div>
 
@@ -52,7 +43,7 @@ export default function TechHero() {
           variants={fadeUp}
           initial="hidden"
           animate="visible"
-          custom={0.1}
+          custom={1}
           className="font-bold mb-6"
           style={{
             fontSize: 'var(--text-h1)',
@@ -79,7 +70,7 @@ export default function TechHero() {
           variants={fadeUp}
           initial="hidden"
           animate="visible"
-          custom={0.2}
+          custom={2}
           className="mx-auto"
           style={{
             fontSize: 'var(--text-body-lg)',
@@ -88,8 +79,7 @@ export default function TechHero() {
             maxWidth: '640px',
           }}
         >
-          SSB operates with a small, high-efficiency team — because every operation
-          runs on proprietary AI agents. Our team focuses on decisions, not data entry.
+          {TECH_HERO.subheadline}
         </motion.p>
 
       </div>

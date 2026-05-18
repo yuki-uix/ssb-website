@@ -1,17 +1,9 @@
 'use client'
 
-import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (delay = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
-  }),
-}
+import { BRANDS_HERO } from '@/lib/constants'
+import { fadeUp } from '@/lib/animations'
+import { GradientButton } from '@/components/ui/GradientButton'
 
 export default function ForBrandsHero() {
   return (
@@ -43,7 +35,7 @@ export default function ForBrandsHero() {
               background: 'rgba(59,130,246,0.08)',
             }}
           >
-            ✦ For Brands
+            ✦ {BRANDS_HERO.badge}
           </span>
         </motion.div>
 
@@ -52,7 +44,7 @@ export default function ForBrandsHero() {
           variants={fadeUp}
           initial="hidden"
           animate="visible"
-          custom={0.1}
+          custom={1}
           className="font-bold mb-3"
           style={{
             fontSize: 'var(--text-h1)',
@@ -61,7 +53,7 @@ export default function ForBrandsHero() {
             color: '#FFFFFF',
           }}
         >
-          Not a Reseller. Not a 3PL.
+          {BRANDS_HERO.headline}
         </motion.h1>
 
         {/* Gradient sub-headline */}
@@ -69,7 +61,7 @@ export default function ForBrandsHero() {
           variants={fadeUp}
           initial="hidden"
           animate="visible"
-          custom={0.18}
+          custom={2}
           className="font-bold mb-8"
           style={{
             fontSize: 'var(--text-h1)',
@@ -81,7 +73,7 @@ export default function ForBrandsHero() {
             backgroundClip: 'text',
           }}
         >
-          A Vertically Integrated Brand Operator.
+          {BRANDS_HERO.headlineAccent}
         </motion.p>
 
         {/* Description */}
@@ -89,18 +81,16 @@ export default function ForBrandsHero() {
           variants={fadeUp}
           initial="hidden"
           animate="visible"
-          custom={0.26}
+          custom={3}
           className="mb-10 mx-auto"
           style={{
             fontSize: 'var(--text-body)',
-            color: '#94A3B8',
+            color: '#CBD5E1',
             lineHeight: 'var(--leading-body)',
             maxWidth: '600px',
           }}
         >
-          SSB combines the operational muscle of a national distributor with the digital
-          intelligence of a modern e‑commerce operator. One partner. Every channel. Full
-          accountability — from your dock to the consumer's doorstep, across the US and China.
+          {BRANDS_HERO.subheadline}
         </motion.p>
 
         {/* CTA */}
@@ -108,25 +98,10 @@ export default function ForBrandsHero() {
           variants={fadeUp}
           initial="hidden"
           animate="visible"
-          custom={0.34}
+          custom={4}
           className="flex items-center justify-center gap-4"
         >
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold text-white transition-all duration-200"
-            style={{ background: 'linear-gradient(135deg, #3B82F6, #0EA5E9)' }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.opacity = '0.9'
-              e.currentTarget.style.transform = 'translateY(-1px)'
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.opacity = '1'
-              e.currentTarget.style.transform = 'translateY(0)'
-            }}
-          >
-            Get in Touch
-            <ArrowRight className="w-4 h-4" />
-          </Link>
+          <GradientButton href="/contact" size="sm">Get in Touch</GradientButton>
         </motion.div>
 
       </div>

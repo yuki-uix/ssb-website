@@ -1,18 +1,28 @@
 'use client'
 
-import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
+import { ease } from '@/lib/animations'
+import { GradientButton } from '@/components/ui/GradientButton'
 
-const ease = [0.22, 1, 0.36, 1] as [number, number, number, number]
+// ─── PageCTA ──────────────────────────────────────────────────────────────────
+// Shared CTA section used at the bottom of every content page.
+// Renders: ambient glow → overline → h2 → body → GradientButton.
 
-export default function TechCTA() {
+interface PageCTAProps {
+  overline: string
+  headline: string
+  body: string
+  buttonLabel: string
+  href: string
+}
+
+export function PageCTA({ overline, headline, body, buttonLabel, href }: PageCTAProps) {
   return (
     <section
       className="relative overflow-hidden"
       style={{ borderTop: '1px solid rgba(59,130,246,0.12)' }}
     >
-      {/* Ambient glow */}
+      {/* Ambient radial glow */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -36,7 +46,7 @@ export default function TechCTA() {
             color: '#94A3B8',
           }}
         >
-          See It Live
+          {overline}
         </motion.p>
 
         {/* Headline */}
@@ -44,25 +54,25 @@ export default function TechCTA() {
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.55, ease }}
+          transition={{ duration: 0.55, delay: 0.06, ease }}
           className="font-bold mb-6"
           style={{
-            fontSize: 'var(--text-h1)',
+            fontSize: 'var(--text-h2)',
             color: '#FFFFFF',
-            maxWidth: '640px',
-            lineHeight: 'var(--leading-h1)',
-            letterSpacing: 'var(--tracking-h1)',
+            maxWidth: '680px',
+            lineHeight: 'var(--leading-h2)',
+            letterSpacing: 'var(--tracking-h2)',
           }}
         >
-          Watch the agents work.
+          {headline}
         </motion.h2>
 
-        {/* Sub-headline */}
+        {/* Body */}
         <motion.p
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.55, delay: 0.08, ease }}
+          transition={{ duration: 0.55, delay: 0.12, ease }}
           className="mb-10"
           style={{
             fontSize: 'var(--text-body)',
@@ -71,39 +81,17 @@ export default function TechCTA() {
             lineHeight: 'var(--leading-body)',
           }}
         >
-          Schedule a live demo and see how SSB's AI agents handle discovery,
-          pricing, protection, and fulfillment — end to end.
+          {body}
         </motion.p>
 
-        {/* CTA Button */}
+        {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.5, delay: 0.18, ease }}
+          transition={{ duration: 0.5, delay: 0.2, ease }}
         >
-          <Link
-            href="/contact#form"
-            className="inline-flex items-center gap-2 font-semibold transition-all duration-200"
-            style={{
-              fontSize: 'var(--text-body-sm)',
-              padding: '0.875rem 2.25rem',
-              borderRadius: '0.875rem',
-              background: 'linear-gradient(135deg, #3B82F6 0%, #0EA5E9 100%)',
-              color: '#FFFFFF',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = 'linear-gradient(135deg, #2563EB 0%, #0284C7 100%)'
-              e.currentTarget.style.transform = 'translateY(-1px)'
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'linear-gradient(135deg, #3B82F6 0%, #0EA5E9 100%)'
-              e.currentTarget.style.transform = 'translateY(0)'
-            }}
-          >
-            Request a Demo
-            <ArrowRight className="w-4 h-4" />
-          </Link>
+          <GradientButton href={href}>{buttonLabel}</GradientButton>
         </motion.div>
 
       </div>

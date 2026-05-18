@@ -2,8 +2,10 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ArrowRight, ArrowBigRight } from 'lucide-react'
+import { ArrowBigRight } from 'lucide-react'
 import { HERO, AUDIENCE_CTAS } from '@/lib/constants'
+import { ease } from '@/lib/animations'
+import { GradientButton } from '@/components/ui/GradientButton'
 
 // ─── Shopping Agent Mockup ────────────────────────────────────────────────────
 
@@ -157,7 +159,7 @@ const fadeUp = {
   visible: (delay = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
+    transition: { duration: 0.6, delay, ease },
   }),
 }
 
@@ -245,16 +247,7 @@ export default function HomeHero() {
               custom={0.3}
               className="flex items-center gap-4"
             >
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold text-white transition-all duration-200"
-                style={{ background: 'linear-gradient(135deg, #3B82F6, #0EA5E9)' }}
-                onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.9' }}
-                onMouseLeave={(e) => { e.currentTarget.style.opacity = '1' }}
-              >
-                Get in Touch
-                <ArrowRight className="w-4 h-4" />
-              </Link>
+              <GradientButton href="/contact" size="sm">{HERO.cta.primary}</GradientButton>
               <Link
                 href="/technology"
                 className="text-sm font-medium transition-colors duration-200"
