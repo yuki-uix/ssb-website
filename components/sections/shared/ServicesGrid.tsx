@@ -4,56 +4,26 @@ import { motion } from 'framer-motion'
 import { Globe, Store, Map, PackageOpen, ShoppingCart, ShieldCheck } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { fadeUp } from '@/lib/animations'
+import { BRAND_SERVICES } from '@/lib/constants'
 
 interface Service {
   icon: LucideIcon
   title: string
   description: string
   featured?: boolean
-  colSpan?: number
+  colSpan?: number    // lg col-span
+  mdColSpan?: number  // md col-span override (tablet)
 }
 
+// Icons and layout config are visual/component-level decisions.
+// Title and description are sourced from BRAND_SERVICES in lib/constants.ts.
 const SERVICES: Service[] = [
-  {
-    icon: Globe,
-    title: 'US Full-Channel E-commerce',
-    description:
-      'Amazon 1P/3P, Walmart, TikTok Shop, DTC, eBay, Temu, Shein, and 14+ wholesale channels — fully operated in-house, never outsourced.',
-    featured: true,
-    colSpan: 2,
-  },
-  {
-    icon: Store,
-    title: 'Store-in-Store Retail',
-    description:
-      'We actively place your products into physical retail locations across the US — expanding your reach beyond digital.',
-  },
-  {
-    icon: Map,
-    title: 'China Market via JD.com',
-    description:
-      'Reach 700M+ consumers on JD.com with no China entity required. SSB handles sourcing, logistics, and operations end-to-end.',
-  },
-  {
-    icon: PackageOpen,
-    title: 'Silent Liquidation',
-    description:
-      'Clear excess inventory quietly and efficiently — without disrupting your pricing integrity on any channel.',
-  },
-  {
-    icon: ShoppingCart,
-    title: 'Supermarket & Duty-Free',
-    description:
-      'We supply US supermarket chains and international duty-free retail channels — distribution paths most brands can\'t access alone.',
-  },
-  {
-    icon: ShieldCheck,
-    title: 'Brand Protection',
-    description:
-      'Real-time MAP enforcement, grey market seller detection, and Amazon Transparency anti-counterfeiting — always on, across every channel.',
-    featured: true,
-    colSpan: 2,
-  },
+  { icon: Globe,        title: BRAND_SERVICES[0].title, description: BRAND_SERVICES[0].description, featured: true, colSpan: 3 },
+  { icon: Store,        title: BRAND_SERVICES[1].title, description: BRAND_SERVICES[1].description },
+  { icon: Map,          title: BRAND_SERVICES[2].title, description: BRAND_SERVICES[2].description },
+  { icon: PackageOpen,  title: BRAND_SERVICES[3].title, description: BRAND_SERVICES[3].description },
+  { icon: ShoppingCart, title: BRAND_SERVICES[4].title, description: BRAND_SERVICES[4].description },
+  { icon: ShieldCheck,  title: BRAND_SERVICES[5].title, description: BRAND_SERVICES[5].description, mdColSpan: 2 },
 ]
 
 export default function ServicesGrid() {
@@ -113,9 +83,11 @@ export default function ServicesGrid() {
               whileInView="visible"
               viewport={{ once: true, margin: '-40px' }}
               custom={i}
-              className={`group relative flex flex-col gap-4 p-8 transition-colors duration-200${
-                service.colSpan === 2 ? ' md:col-span-2 lg:col-span-2' : ''
-              }`}
+              className={[
+                'group relative flex flex-col gap-4 p-8 transition-colors duration-200',
+                service.colSpan === 3 ? 'lg:col-span-3' : '',
+                (service.colSpan === 3 || service.mdColSpan === 2) ? 'md:col-span-2' : '',
+              ].filter(Boolean).join(' ')}
               style={{
                 background: 'var(--background)',
                 boxShadow: service.featured ? 'inset 0 2px 0 #3B82F6' : 'none',

@@ -5,7 +5,13 @@ export default function ContactPage() {
     <main style={{ background: 'var(--background)' }}>
 
       {/* ── Header ─────────────────────────────────────────────── */}
-      <section className="min-h-[60vh] flex flex-col items-center justify-center text-center px-6 py-24">
+      <section className="relative min-h-[60vh] flex flex-col items-center justify-center text-center px-6 py-24 overflow-hidden">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: 'radial-gradient(ellipse 70% 60% at 50% 0%, rgba(59,130,246,0.12) 0%, transparent 70%)',
+          }}
+        />
         <p
           className="uppercase font-medium mb-4"
           style={{
@@ -42,11 +48,18 @@ export default function ContactPage() {
       {/* ── Form ───────────────────────────────────────────────── */}
       <section
         id="form"
+        className="relative overflow-hidden"
         style={{
-          borderTop: '1px solid rgba(255,255,255,0.06)',
+          borderTop: '1px solid rgba(59,130,246,0.12)',
           background: 'rgba(255,255,255,0.015)',
         }}
       >
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: 'radial-gradient(ellipse 80% 60% at 50% 100%, rgba(59,130,246,0.08) 0%, transparent 70%)',
+          }}
+        />
         <div className="max-w-2xl mx-auto px-6 py-20">
 
           <p

@@ -90,8 +90,9 @@ export function PageCTA({ overline, headline, body, buttonLabel, href }: PageCTA
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.5, delay: 0.2, ease }}
+          className="w-full sm:w-auto"
         >
-          <GradientButton href={href}>{buttonLabel}</GradientButton>
+          <GradientButton href={href} className="w-full sm:w-auto sm:inline-flex flex justify-center">{buttonLabel}</GradientButton>
         </motion.div>
 
       </div>

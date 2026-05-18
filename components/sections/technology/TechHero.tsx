@@ -124,7 +124,7 @@ export default function TechHero() {
           custom={2}
           className="mx-auto"
           style={{
-            fontSize: 'var(--text-body-lg)',
+            fontSize: 'var(--text-body)',
             color: '#CBD5E1',
             lineHeight: 'var(--leading-body)',
             maxWidth: '640px',

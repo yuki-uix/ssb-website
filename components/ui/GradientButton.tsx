@@ -12,15 +12,16 @@ interface GradientButtonProps {
   href: string
   children: React.ReactNode
   size?: 'sm' | 'md'
+  className?: string
 }
 
-export function GradientButton({ href, children, size = 'md' }: GradientButtonProps) {
+export function GradientButton({ href, children, size = 'md', className = '' }: GradientButtonProps) {
   const isMd = size === 'md'
 
   return (
     <Link
       href={href}
-      className="inline-flex items-center gap-2 font-semibold text-white transition-all duration-200"
+      className={`inline-flex items-center gap-2 font-semibold text-white transition-all duration-200 ${className}`.trim()}
       style={{
         fontSize: isMd ? 'var(--text-body-sm)' : '0.875rem',
         padding: isMd ? '0.875rem 2.25rem' : '0.75rem 1.5rem',
