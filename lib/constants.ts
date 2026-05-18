@@ -184,4 +184,28 @@ export const AI_AGENTS = [
       "Applied to 30+ CPG brands including Hyland's and Hello Bello",
     ],
   },
+  {
+    name: "Agent 05",
+    category: "Coming Soon",
+    tagline: "Details to be announced.",
+    description: "This agent is part of SSB's 7-agent operations engine. Full details coming soon.",
+    bullets: ["— Placeholder —"],
+    placeholder: true,
+  },
+  {
+    name: "Agent 06",
+    category: "Coming Soon",
+    tagline: "Details to be announced.",
+    description: "This agent is part of SSB's 7-agent operations engine. Full details coming soon.",
+    bullets: ["— Placeholder —"],
+    placeholder: true,
+  },
+  {
+    name: "Agent 07",
+    category: "Coming Soon",
+    tagline: "Details to be announced.",
+    description: "This agent is part of SSB's 7-agent operations engine. Full details coming soon.",
+    bullets: ["— Placeholder —"],
+    placeholder: true,
+  },
 ] as const
