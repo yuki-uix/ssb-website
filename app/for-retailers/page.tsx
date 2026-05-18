@@ -1,4 +1,4 @@
-export default function ContactPage() {
+export default function ForRetailersPage() {
   return (
     <main
       className="min-h-screen flex flex-col items-center justify-center text-center px-6"
@@ -12,7 +12,7 @@ export default function ContactPage() {
           color: '#94A3B8',
         }}
       >
-        Get in Touch
+        For Retailers
       </p>
       <h1
         className="font-bold mb-4"
@@ -23,7 +23,7 @@ export default function ContactPage() {
           letterSpacing: 'var(--tracking-h1)',
         }}
       >
-        Let's Build Your<br />Distribution Strategy.
+        Smarter Inventory.<br />Faster Turns.
       </h1>
       <p style={{ fontSize: 'var(--text-body)', color: '#94A3B8', maxWidth: '440px' }}>
         This page is coming soon. In the meantime, reach us at{' '}
