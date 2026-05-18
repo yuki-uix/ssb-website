@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ArrowBigRight } from 'lucide-react'
 import { HERO, AUDIENCE_CTAS } from '@/lib/constants'
-import { ease } from '@/lib/animations'
+import { ease, floatingGlow } from '@/lib/animations'
 import { GradientButton } from '@/components/ui/GradientButton'
 
 // ─── Shopping Agent Mockup ────────────────────────────────────────────────────
@@ -90,12 +90,12 @@ function ShoppingAgentMockup() {
         </p>
       </div>
 
-      {/* Product results */}
+      {/* Product results — mobile: first card only, md+: all three */}
       <div className="px-5 py-3 space-y-2">
-        {PRODUCT_RESULTS.map((product) => (
+        {PRODUCT_RESULTS.map((product, i) => (
           <div
             key={product.sku}
-            className="flex items-center gap-3 p-3 rounded-xl"
+            className={`flex items-center gap-3 p-3 rounded-xl${i > 0 ? ' hidden md:flex' : ''}`}
             style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}
           >
             <div
@@ -131,7 +131,8 @@ function ShoppingAgentMockup() {
         <div className="flex items-center gap-2">
           <div className="w-1.5 h-1.5 rounded-full bg-[#10B981]" />
           <span className="text-xs" style={{ color: '#94A3B8' }}>
-            Consolidated PO ready · <span className="text-white font-semibold">3 suppliers</span>
+            <span className="hidden md:inline">Consolidated PO ready · <span className="text-white font-semibold">3 suppliers</span></span>
+            <span className="md:hidden">PO ready · <span className="text-white font-semibold">Best Match selected</span></span>
           </span>
         </div>
         <span className="text-xs font-semibold" style={{ color: '#60A5FA' }}>
@@ -167,16 +168,16 @@ const fadeUp = {
 
 export default function HomeHero() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
+    <section className="relative min-h-screen flex items-start md:items-center overflow-hidden">
       {/* Background grid — subtle, left side only */}
       <div className="absolute inset-0 bg-grid opacity-30" />
 
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full py-32">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pt-28 pb-16 md:py-32">
 
         {/* Hero row — Text + Shopping Agent */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 lg:gap-20 items-center">
 
           {/* Left — Text + primary CTA */}
           <div className="relative flex flex-col">
@@ -266,11 +267,11 @@ export default function HomeHero() {
             initial="hidden"
             animate="visible"
             custom={0.2}
-            className="relative hidden lg:flex justify-end"
+            className="relative hidden md:flex justify-center md:justify-end"
           >
-            {/* Cyan orb — top-right of card */}
-            <div
-              className="absolute pointer-events-none"
+            {/* Cyan orb — top-right of card, floats slowly (desktop only) */}
+            <motion.div
+              className="absolute pointer-events-none hidden md:block"
               style={{
                 top: '-60px',
                 right: '-40px',
@@ -280,10 +281,11 @@ export default function HomeHero() {
                 background: 'radial-gradient(circle, rgba(14,165,233,0.22) 0%, rgba(59,130,246,0.1) 45%, transparent 70%)',
                 filter: 'blur(36px)',
               }}
+              {...floatingGlow}
             />
-            {/* Grid overlay — follows card position */}
+            {/* Grid overlay — follows card position (desktop only) */}
             <div
-              className="absolute pointer-events-none"
+              className="absolute pointer-events-none hidden md:block"
               style={{
                 top: '-80px',
                 right: '-60px',
