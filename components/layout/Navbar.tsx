@@ -41,14 +41,14 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200"
+                className="px-4 py-2 text-sm font-medium transition-all duration-200"
                 style={{
                   color: isActive ? '#FFFFFF' : '#94A3B8',
                   background: 'transparent',
                   border: 'none',
-                  boxShadow: isActive ? 'inset 0 -2px 0 #3B82F6' : 'none',
+                  borderBottom: isActive ? '2px solid #3B82F6' : '2px solid transparent',
                   borderRadius: 0,
-                  paddingBottom: '6px',
+                  paddingBottom: '4px',
                 }}
                 onMouseEnter={(e) => {
                   if (!isActive) e.currentTarget.style.color = '#E2E8F0'

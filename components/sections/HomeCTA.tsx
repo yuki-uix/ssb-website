@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { ArrowRight } from 'lucide-react'
 
 export default function HomeCTA() {
   return (
@@ -62,7 +63,7 @@ export default function HomeCTA() {
           className="mb-10"
           style={{
             fontSize: 'var(--text-body)',
-            color: '#94A3B8',
+            color: '#CBD5E1',
             maxWidth: '480px',
             lineHeight: 'var(--leading-body)',
           }}
@@ -79,27 +80,25 @@ export default function HomeCTA() {
         >
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2.5 font-semibold transition-all duration-200"
+            className="inline-flex items-center gap-2 font-semibold transition-all duration-200"
             style={{
               fontSize: 'var(--text-body-sm)',
               padding: '0.875rem 2.25rem',
               borderRadius: '0.875rem',
               background: 'linear-gradient(135deg, #3B82F6 0%, #0EA5E9 100%)',
               color: '#FFFFFF',
-              boxShadow: '0 0 32px rgba(59,130,246,0.35)',
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.background = 'linear-gradient(135deg, #2563EB 0%, #0284C7 100%)'
-              e.currentTarget.style.boxShadow = '0 0 48px rgba(59,130,246,0.5)'
               e.currentTarget.style.transform = 'translateY(-1px)'
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.background = 'linear-gradient(135deg, #3B82F6 0%, #0EA5E9 100%)'
-              e.currentTarget.style.boxShadow = '0 0 32px rgba(59,130,246,0.35)'
               e.currentTarget.style.transform = 'translateY(0)'
             }}
           >
             Get in Touch
+            <ArrowRight className="w-4 h-4" />
           </Link>
         </motion.div>
 
