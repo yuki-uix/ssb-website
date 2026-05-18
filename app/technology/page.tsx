@@ -1,4 +1,5 @@
 import TechHero from '@/components/sections/TechHero'
+import TechMetricsBar from '@/components/sections/TechMetricsBar'
 
 export default function TechnologyPage() {
   return (
@@ -7,9 +8,7 @@ export default function TechnologyPage() {
 
       {/* Tech Metrics */}
       <section id="metrics">
-        <div className="max-w-7xl mx-auto px-6 py-16">
-          <p className="text-[var(--text-secondary)]">Tech Metrics Bar</p>
-        </div>
+        <TechMetricsBar />
       </section>
 
       {/* AI Agent Cards */}

@@ -129,10 +129,10 @@ export const TECH_HERO = {
 } as const
 
 export const TECH_METRICS = [
-  { value: "7", label: "AI Agents in Production" },
-  { value: "4.32M", label: "Products in Database" },
-  { value: "753K", label: "B2B Catalog SKUs" },
-  { value: "28K", label: "Brands Tracked" },
+  { value: "7",     numericValue: 7,    suffix: "",  decimals: 0, label: "AI Agents in Production" },
+  { value: "4.32M", numericValue: 4.32, suffix: "M", decimals: 2, label: "Products in Database" },
+  { value: "753K",  numericValue: 753,  suffix: "K", decimals: 0, label: "B2B Catalog SKUs" },
+  { value: "28K",   numericValue: 28,   suffix: "K", decimals: 0, label: "Brands Tracked" },
 ] as const
 
 export const AI_AGENTS = [
