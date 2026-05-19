@@ -92,7 +92,7 @@ Three preset buttons ("Anti-aging under $15 B2B" / "Wireless earbuds bulk Q4" / 
 
 | Layer | Choice | Reason |
 |-------|--------|--------|
-| Framework | Next.js 15 (App Router) | Per challenge spec |
+| Framework | Next.js 16.2.6 (App Router) | Challenge spec: 15+; installed: 16.2.6 |
 | Language | TypeScript | Type safety, zero `tsc` errors enforced |
 | Styling | Tailwind CSS + CSS custom properties | Utility classes + design token system |
 | Animation | Framer Motion | `useAnimationFrame` physics loop, `AnimatePresence` |

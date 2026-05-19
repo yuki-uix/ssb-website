@@ -118,7 +118,7 @@ export default function ForBrandsHero() {
             fontSize: 'var(--text-h1)',
             lineHeight: 'var(--leading-h1)',
             letterSpacing: 'var(--tracking-h1)',
-            background: 'linear-gradient(135deg, #3B82F6 0%, #0EA5E9 100%)',
+            background: 'linear-gradient(135deg, #60A5FA 0%, #38BDF8 100%)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             backgroundClip: 'text',
