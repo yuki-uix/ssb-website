@@ -122,6 +122,10 @@ Raw report: [`docs/lighthouse.json`](./docs/lighthouse.json)
 | Desktop | 1440px | ✅ Pass |
 | Legacy mobile | 320px | ⚠️ Not supported (below minimum) |
 
+### Challenge scope
+
+**Assignment email specified 3 pages**: Homepage · For Brands · Technology. The nav bar also links to For Retailers, For Distributors, and For International Buyers — these reflect the full site architecture described in the brief outline but are out of scope for this submission. Contact page was built as an additional deliverable.
+
 ### Known limitations
 - **Minimum supported width: 375px.** 320px (iPhone SE 1st gen, 2016) is not in scope — market share < 1% for target B2B audience.
 - **Touch hover states.** `onMouseEnter` / `onMouseLeave` handlers do not fire on touch devices. Cards and nav links will not show hover styles on mobile. This is a browser limitation, not a bug.

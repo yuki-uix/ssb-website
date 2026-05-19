@@ -168,7 +168,7 @@ export default function AIAgentCards() {
             color: '#FFFFFF',
           }}
         >
-          7 AI Agents.{' '}
+          4 AI Agents in Production.{' '}
           <span style={{ color: '#CBD5E1', fontWeight: 400 }}>
             One Operations Engine.
           </span>

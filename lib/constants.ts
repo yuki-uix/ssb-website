@@ -35,7 +35,7 @@ export const METRICS = [
   { value: "10+",      numericValue: 10,   suffix: "+",  decimals: 0, label: "channels operated in-house" },
   { value: "1.97M",    numericValue: 1.97, suffix: "M",  decimals: 2, label: "sq ft distribution reach" },
   { value: "4.32M",    numericValue: 4.32, suffix: "M",  decimals: 2, label: "products in live catalog" },
-  { value: "7",        numericValue: 7,    suffix: "",   decimals: 0, label: "AI agents running 24/7" },
+  { value: "4",        numericValue: 4,    suffix: "",   decimals: 0, label: "AI agents in production" },
 ] as const
 
 
@@ -122,14 +122,14 @@ export const BRAND_PROTECTION_STATS = [
 // ─── Technology ───────────────────────────────────────────────────────────────
 
 export const TECH_HERO = {
-  badge: "7 AI Agents in Production",
+  badge: "4 In Production · 3 In Development",
   headline: "Our Team Runs on AI.",
   subheadline:
     "SSB operates with a small, high-efficiency team — because every operation runs on proprietary AI agents. From product discovery to price monitoring to order fulfillment, our AI handles the heavy lifting.",
 } as const
 
 export const TECH_METRICS = [
-  { value: "7",     numericValue: 7,    suffix: "",  decimals: 0, label: "AI Agents in Production" },
+  { value: "4",     numericValue: 4,    suffix: "",  decimals: 0, label: "AI Agents in Production" },
   { value: "4.32M", numericValue: 4.32, suffix: "M", decimals: 2, label: "Products in Database" },
   { value: "753K",  numericValue: 753,  suffix: "K", decimals: 0, label: "B2B Catalog SKUs" },
   { value: "28K",   numericValue: 28,   suffix: "K", decimals: 0, label: "Brands Tracked" },
