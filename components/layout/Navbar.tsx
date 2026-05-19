@@ -113,11 +113,38 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
   )
 }
 
+// ─── NavLink (desktop) ────────────────────────────────────────────────────────
+
+function NavLink({ href, label, isActive }: { href: string; label: string; isActive: boolean }) {
+  const [hovered, setHovered] = useState(false)
+  return (
+    <Link
+      href={href}
+      className={`px-4 py-2 text-sm transition-all duration-200 ${isActive ? 'font-semibold' : 'font-medium'}`}
+      style={{
+        color: isActive ? '#FFFFFF' : hovered ? '#E2E8F0' : '#94A3B8',
+        background: 'transparent',
+        border: 'none',
+        borderBottom: isActive ? '2px solid #3B82F6' : '2px solid transparent',
+        borderRadius: 0,
+        paddingBottom: '4px',
+        letterSpacing: isActive ? '-0.01em' : 'normal',
+        transition: 'color 200ms ease',
+      }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      {label}
+    </Link>
+  )
+}
+
 // ─── Navbar ───────────────────────────────────────────────────────────────────
 
 export default function Navbar() {
   const pathname = usePathname()
   const [menuOpen, setMenuOpen] = useState(false)
+  const [ctaHovered, setCtaHovered] = useState(false)
 
   // Scroll lock
   useEffect(() => {
@@ -165,29 +192,14 @@ export default function Navbar() {
 
           {/* Nav links — desktop */}
           <nav className="hidden lg:flex items-center gap-1">
-            {NAV_LINKS.map((link) => {
-              const isActive = pathname === link.href
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`px-4 py-2 text-sm transition-all duration-200 ${isActive ? 'font-semibold' : 'font-medium'}`}
-                  style={{
-                    color: isActive ? '#FFFFFF' : '#94A3B8',
-                    background: 'transparent',
-                    border: 'none',
-                    borderBottom: isActive ? '2px solid #3B82F6' : '2px solid transparent',
-                    borderRadius: 0,
-                    paddingBottom: '4px',
-                    letterSpacing: isActive ? '-0.01em' : 'normal',
-                  }}
-                  onMouseEnter={(e) => { if (!isActive) e.currentTarget.style.color = '#E2E8F0' }}
-                  onMouseLeave={(e) => { if (!isActive) e.currentTarget.style.color = '#94A3B8' }}
-                >
-                  {link.label}
-                </Link>
-              )
-            })}
+            {NAV_LINKS.map((link) => (
+              <NavLink
+                key={link.href}
+                href={link.href}
+                label={link.label}
+                isActive={pathname === link.href}
+              />
+            ))}
           </nav>
 
           {/* Right side */}
@@ -195,22 +207,15 @@ export default function Navbar() {
             {/* CTA — desktop */}
             <Link
               href="/contact"
-              className="hidden lg:inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200"
+              className="hidden lg:inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium"
               style={{
-                border: '1px solid rgba(59,130,246,0.35)',
-                color: '#93C5FD',
-                background: 'rgba(59,130,246,0.08)',
+                border: `1px solid ${ctaHovered ? 'rgba(59,130,246,0.6)' : 'rgba(59,130,246,0.35)'}`,
+                color: ctaHovered ? '#FFFFFF' : '#93C5FD',
+                background: ctaHovered ? 'rgba(59,130,246,0.16)' : 'rgba(59,130,246,0.08)',
+                transition: 'background 200ms ease, border-color 200ms ease, color 200ms ease',
               }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'rgba(59,130,246,0.16)'
-                e.currentTarget.style.borderColor = 'rgba(59,130,246,0.6)'
-                e.currentTarget.style.color = '#FFFFFF'
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'rgba(59,130,246,0.08)'
-                e.currentTarget.style.borderColor = 'rgba(59,130,246,0.35)'
-                e.currentTarget.style.color = '#93C5FD'
-              }}
+              onMouseEnter={() => setCtaHovered(true)}
+              onMouseLeave={() => setCtaHovered(false)}
             >
               Get in Touch
             </Link>
