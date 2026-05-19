@@ -1,12 +1,6 @@
 # SSB Website — UI Challenge Submission
 
-Marketing website for **Supersonic Supply (SSB)**, a next-generation US brand distributor. Built as a front-end engineering and product thinking challenge.
-
----
-
-## Live Demo
-
-**https://ssb-website-three.vercel.app/**
+Marketing website for **Supersonic Supply (SSB)**, a next-generation US brand distributor. Built as a front-end engineering and product thinking challenge. **[→ Live Demo](https://ssb-website-three.vercel.app/)**
 
 ![Homepage Desktop](./docs/screenshot-desktop.png)
 
