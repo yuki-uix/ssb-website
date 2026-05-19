@@ -156,6 +156,40 @@ export default function ForBrandsHero() {
         </motion.div>
 
       </div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0, y: -6 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 1.0, ease: 'easeOut' }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5"
+        aria-hidden="true"
+      >
+        <span
+          className="text-[10px] uppercase tracking-widest font-medium"
+          style={{ color: '#64748B' }}
+        >
+          Scroll
+        </span>
+        <motion.svg
+          width="16"
+          height="16"
+          viewBox="0 0 16 16"
+          fill="none"
+          style={{ color: '#64748B' }}
+          animate={{ y: [0, 4, 0] }}
+          transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+        >
+          <path
+            d="M8 3v10M4 9l4 4 4-4"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </motion.svg>
+      </motion.div>
+
     </section>
   )
 }

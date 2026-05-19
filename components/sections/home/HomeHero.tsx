@@ -41,7 +41,7 @@ const PRODUCT_RESULTS = [
 function ShoppingAgentMockup() {
   return (
     <div
-      className="relative w-full max-w-[520px] rounded-2xl overflow-hidden"
+      className="relative w-full max-w-[480px] rounded-2xl overflow-hidden"
       style={{
         background: '#111827',
         border: '1px solid rgba(59,130,246,0.35)',
@@ -181,7 +181,7 @@ export default function HomeHero() {
       <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pt-28 pb-16 md:py-32">
 
         {/* Hero row — Text + Shopping Agent */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 lg:gap-20 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 lg:gap-14 items-center">
 
           {/* Left — Text + primary CTA */}
           <div className="relative flex flex-col">
