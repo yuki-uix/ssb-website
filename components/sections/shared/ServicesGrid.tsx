@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Globe, Store, Map, PackageOpen, ShoppingCart, ShieldCheck } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
@@ -28,6 +29,8 @@ const BRAND_CONTROL: Service[] = [
 ]
 
 function ServiceCard({ service, index }: { service: Service; index: number }) {
+  const [hovered, setHovered] = useState(false)
+
   return (
     <motion.div
       key={service.title}
@@ -36,17 +39,14 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
       whileInView="visible"
       viewport={{ once: true, margin: '-40px' }}
       custom={index}
-      className="group relative flex flex-col gap-4 p-8 transition-colors duration-200"
+      className="group relative flex flex-col gap-4 p-8"
       style={{
-        background: 'var(--background)',
+        background: hovered ? 'rgba(59,130,246,0.06)' : 'var(--background)',
         boxShadow: service.featured ? 'inset 0 2px 0 #3B82F6' : 'none',
+        transition: 'background 200ms ease',
       }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.background = 'rgba(59,130,246,0.06)'
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.background = 'var(--background)'
-      }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
     >
       {/* Icon */}
       <div
