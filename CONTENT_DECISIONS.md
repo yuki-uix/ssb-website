@@ -50,3 +50,17 @@ Rationale:
 | Silent Liquidation | ⭐ Supporting service | Solves a real pain point, not a primary selling point |
 
 Note: differentiation rank informs copy quality and specificity, not card size or visual accent.
+
+---
+
+## Technology — AI Agent Cards (Agent 05–07)
+
+### Coming Soon placeholder display
+
+**Current state:** Agent 05/06/07 are rendered as visible cards with "Coming Soon" category and "Details to be announced." content. Brief provides no real content for these three agents.
+
+**Design review finding:** Showing 3 empty placeholder cards signals an unfinished product. For a B2B operator, this reads as "early stage" rather than building anticipation. It also directly contradicts the "7 AI Agents in Production" claim in the hero badge and homepage metrics.
+
+**Recommended decision:** Remove placeholder cards from the rendered UI. Show only the 4 agents with real content. Update hero badge and metrics to reflect "4 AI Agents in Production" or add a separate "3 more coming" treatment that doesn't occupy full card slots.
+
+**Status:** Flagged — pending PM decision. Tracked in issue #74 scope or as a standalone content fix.
