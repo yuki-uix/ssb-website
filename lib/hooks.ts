@@ -44,13 +44,22 @@ export function useBouncingOrb(
     // Cap delta to avoid jumps after tab switch / repaint gaps
     const dt = Math.min(delta, 50) / 1000
 
-    let nx = x.get() + vel.current.x * dt
-    let ny = y.get() + vel.current.y * dt
+    // Clamp upper bounds to 0 minimum — prevents negative travel space when
+    // orb is larger than container, which causes every-frame velocity flipping (flicker)
+    const upperX = Math.max(0, width - config.orbSize)
+    const upperY = Math.max(0, height - config.orbSize)
 
-    if (nx <= 0) { nx = 0; vel.current.x = Math.abs(vel.current.x) }
-    else if (nx >= width - config.orbSize) { nx = width - config.orbSize; vel.current.x = -Math.abs(vel.current.x) }
-    if (ny <= 0) { ny = 0; vel.current.y = Math.abs(vel.current.y) }
-    else if (ny >= height - config.orbSize) { ny = height - config.orbSize; vel.current.y = -Math.abs(vel.current.y) }
+    let nx = x.get() + (upperX > 0 ? vel.current.x * dt : 0)
+    let ny = y.get() + (upperY > 0 ? vel.current.y * dt : 0)
+
+    if (upperX > 0) {
+      if (nx <= 0) { nx = 0; vel.current.x = Math.abs(vel.current.x) }
+      else if (nx >= upperX) { nx = upperX; vel.current.x = -Math.abs(vel.current.x) }
+    }
+    if (upperY > 0) {
+      if (ny <= 0) { ny = 0; vel.current.y = Math.abs(vel.current.y) }
+      else if (ny >= upperY) { ny = upperY; vel.current.y = -Math.abs(vel.current.y) }
+    }
 
     x.set(nx)
     y.set(ny)
