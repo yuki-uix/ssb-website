@@ -2,9 +2,7 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ArrowBigRight, Package, Store, Truck, Globe } from 'lucide-react'
-import type { LucideIcon } from 'lucide-react'
-import { HERO, AUDIENCE_CTAS } from '@/lib/constants'
+import { HERO } from '@/lib/constants'
 import { ease, floatingGlow } from '@/lib/animations'
 import { GradientButton } from '@/components/ui/GradientButton'
 
@@ -170,13 +168,6 @@ const fadeUp = {
   }),
 }
 
-const AUDIENCE_ICONS: Record<string, LucideIcon> = {
-  '/for-brands': Package,
-  '/for-retailers': Store,
-  '/for-distributors': Truck,
-  '/for-international-buyers': Globe,
-}
-
 // ─── HomeHero ─────────────────────────────────────────────────────────────────
 
 export default function HomeHero() {
@@ -317,85 +308,6 @@ export default function HomeHero() {
           </motion.div>
         </div>
 
-        {/* Audience routing strip */}
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          custom={0.4}
-          className="mt-16 pt-10"
-          style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}
-        >
-          <p className="text-xs uppercase tracking-widest mb-4" style={{ color: '#94A3B8' }}>
-            Who do we serve —
-          </p>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-            {AUDIENCE_CTAS.map((cta) => {
-              const Icon = AUDIENCE_ICONS[cta.href]
-              return (
-                <Link
-                  key={cta.href}
-                  href={cta.href}
-                  className="group flex items-center justify-between px-5 py-4 rounded-xl transition-all duration-200"
-                  style={{
-                    border: '1px solid rgba(255,255,255,0.07)',
-                    borderLeft: '2px solid rgba(59,130,246,0.4)',
-                    background: 'rgba(255,255,255,0.02)',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.border = '1px solid rgba(59,130,246,0.7)'
-                    e.currentTarget.style.borderLeft = '2px solid #3B82F6'
-                    e.currentTarget.style.background = 'rgba(59,130,246,0.14)'
-                    e.currentTarget.style.boxShadow = '0 0 0 1px rgba(59,130,246,0.15), inset 0 0 20px rgba(59,130,246,0.06)'
-                    const label = e.currentTarget.querySelector('[data-label]') as HTMLElement | null
-                    if (label) label.style.color = '#FFFFFF'
-                    const circle = e.currentTarget.querySelector('[data-arrow]') as HTMLElement | null
-                    if (circle) circle.style.background = 'rgba(59,130,246,0.45)'
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.border = '1px solid rgba(255,255,255,0.07)'
-                    e.currentTarget.style.borderLeft = '2px solid rgba(59,130,246,0.4)'
-                    e.currentTarget.style.background = 'rgba(255,255,255,0.02)'
-                    e.currentTarget.style.boxShadow = 'none'
-                    const label = e.currentTarget.querySelector('[data-label]') as HTMLElement | null
-                    if (label) label.style.color = '#CBD5E1'
-                    const circle = e.currentTarget.querySelector('[data-arrow]') as HTMLElement | null
-                    if (circle) circle.style.background = 'rgba(59,130,246,0.14)'
-                  }}
-                >
-                  <div className="flex items-center gap-3 min-w-0">
-                    {Icon && (
-                      <Icon
-                        className="w-4 h-4 shrink-0"
-                        style={{ color: '#60A5FA' }}
-                        strokeWidth={1.5}
-                      />
-                    )}
-                    <span
-                      data-label
-                      className="text-sm font-semibold truncate"
-                      style={{ color: '#CBD5E1' }}
-                    >
-                      {cta.label}
-                    </span>
-                  </div>
-                  <span
-                    data-arrow
-                    className="w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-all duration-200 group-hover:translate-x-0.5 ml-2"
-                    style={{ background: 'rgba(59,130,246,0.14)' }}
-                  >
-                    <ArrowBigRight
-                      className="w-4 h-4"
-                      fill="currentColor"
-                      strokeWidth={0}
-                      style={{ color: '#3B82F6' }}
-                    />
-                  </span>
-                </Link>
-              )
-            })}
-          </div>
-        </motion.div>
 
       </div>
     </section>
