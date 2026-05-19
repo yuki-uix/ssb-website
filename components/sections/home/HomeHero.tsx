@@ -59,31 +59,33 @@ function ShoppingAgentMockup() {
           <div className="w-1.5 h-1.5 rounded-full bg-[#3B82F6] animate-pulse" />
           <span className="text-xs font-semibold tracking-wide text-white">Shopping Agent</span>
         </div>
-        <span
-          className="text-[10px] px-2 py-0.5 rounded-full font-medium"
-          style={{ background: 'rgba(59,130,246,0.15)', color: '#60A5FA' }}
-        >
-          5M+ SKUs
-        </span>
+        <div className="flex items-center gap-2">
+          <span
+            className="text-[10px] px-2 py-0.5 rounded-full font-medium"
+            style={{ background: 'rgba(59,130,246,0.15)', color: '#60A5FA' }}
+          >
+            5M+ SKUs
+          </span>
+          <span
+            className="text-[10px] px-2 py-0.5 rounded-full font-medium"
+            style={{ background: 'rgba(251,191,36,0.12)', color: '#FCD34D', border: '1px solid rgba(251,191,36,0.25)' }}
+          >
+            Concept Preview
+          </span>
+        </div>
       </div>
 
       {/* Search input */}
       <div className="px-5 py-4" style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
         <div
           className="flex items-center gap-3 px-4 py-2.5 rounded-xl"
-          style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(59,130,246,0.3)' }}
+          style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}
         >
           <svg className="w-3.5 h-3.5 shrink-0" style={{ color: '#60A5FA' }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
           <span className="text-sm" style={{ color: '#CBD5E1' }}>
             anti-aging skincare under $15 for B2B
-          </span>
-          <span
-            className="ml-auto text-xs px-2.5 py-1 rounded-lg font-medium shrink-0"
-            style={{ background: 'linear-gradient(135deg,#3B82F6,#0EA5E9)', color: '#fff' }}
-          >
-            Search
           </span>
         </div>
         <p className="text-[11px] mt-2.5 ml-1" style={{ color: '#94A3B8' }}>
@@ -136,8 +138,11 @@ function ShoppingAgentMockup() {
             <span className="md:hidden">PO ready · <span className="text-white font-semibold">Best Match selected</span></span>
           </span>
         </div>
-        <span className="text-xs font-semibold" style={{ color: '#60A5FA' }}>
-          Order Now →
+        <span
+          className="text-[10px] px-2 py-0.5 rounded-full font-medium"
+          style={{ background: 'rgba(16,185,129,0.12)', color: '#10B981', border: '1px solid rgba(16,185,129,0.2)' }}
+        >
+          PO Ready
         </span>
       </div>
 
