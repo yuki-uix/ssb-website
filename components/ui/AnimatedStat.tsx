@@ -1,11 +1,11 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
-import { motion, useMotionValue, useSpring, useTransform, useInView } from 'framer-motion'
+import { useRef, useState, useEffect } from 'react'
+import { useInView, animate } from 'framer-motion'
 
 // ─── AnimatedStat ─────────────────────────────────────────────────────────────
-// Shared animated counter with gradient text.
-// Counts from 0 → numericValue on first viewport entry, staggered by `index`.
+// Counts 0 → numericValue on viewport entry, staggered by `index`.
+// Falls back to displaying numericValue if animation never triggers.
 
 export function AnimatedStat({
   numericValue,
@@ -20,17 +20,22 @@ export function AnimatedStat({
 }) {
   const ref = useRef<HTMLSpanElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-60px' })
-  const motionVal = useMotionValue(0)
-  const spring = useSpring(motionVal, { stiffness: 55, damping: 22 })
-  const display = useTransform(spring, (v) =>
-    decimals > 0 ? v.toFixed(decimals) : Math.round(v).toString()
-  )
+  // Start at final value so SSR / no-JS / slow connection never shows 0
+  const [count, setCount] = useState(numericValue)
 
   useEffect(() => {
     if (!isInView) return
-    const timer = setTimeout(() => motionVal.set(numericValue), index * 80)
-    return () => clearTimeout(timer)
-  }, [isInView, numericValue, motionVal, index])
+    const controls = animate(0, numericValue, {
+      duration: 1.6,
+      delay: index * 0.08,
+      ease: [0.25, 0.46, 0.45, 0.94],
+      onUpdate: (v) => setCount(v),
+    })
+    return () => controls.stop()
+  }, [isInView, numericValue, index])
+
+  const formatted =
+    decimals > 0 ? count.toFixed(decimals) : Math.round(count).toString()
 
   return (
     <span
@@ -44,7 +49,7 @@ export function AnimatedStat({
         backgroundClip: 'text',
       }}
     >
-      <motion.span>{display}</motion.span>
+      {formatted}
       {suffix}
     </span>
   )
