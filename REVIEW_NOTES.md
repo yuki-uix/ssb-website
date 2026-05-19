@@ -3,27 +3,29 @@
 > Issues identified during development and brand-owner review.
 > Items originate from the provided brief/outline unless noted.
 > Preserved as-is per brief; flagged here so evaluators understand these were identified, not missed.
+> Tracked in GitHub issue [#96](https://github.com/yuki-uix/ssb-website/issues/96).
 
 ---
 
 ## 🔴 P0 — Would block conversion in a live B2B context
 
 ### 1. AI Agent count: brief claims 7, only 4 have real content
-**Status: Preserved per brief. Not silently fixed.**
+**Status: Partially mitigated (frontend). Copy unchanged — requires business sign-off.**
 
 - Brief states "7 AI Agents in Production" — used in hero badge, section heading, and homepage metrics
 - Brief provides content for 4 agents only: Shopping Agent, claim.ai, panner.ai, refinery.ai
 - Agents 05–07 render as "Coming Soon" placeholders with no real content
-- A brand evaluating SSB will click through the Technology page. Seeing 3 of 7 agents as empty placeholders directly contradicts the "in Production" claim
+- **Mitigation applied (#95):** Technology page now shows "In Production" / "In Development" group labels — the visual split makes the distinction visible without changing the copy
+- **Remaining gap:** Hero badge (`7 AI Agents in Production`), section heading (`7 AI Agents.`), and both metrics bars still read "7" — a brand who reads the badge before scrolling to the agent cards will still see the contradiction
 - **Recommendation:** Change "7 AI Agents in Production" → "4 AI Agents in Production, 3 in Development"; or suppress the count until all 7 have content. Either requires business sign-off.
 
 ### 2. No trust infrastructure for B2B conversion
-**Status: Brief provides no content for these. Cannot be resolved at frontend layer.**
+**Status: Partially mitigated (frontend). Substantive content requires business input.**
 
 A brand serious about handing over inventory and marketplace access will verify before signing:
 - **About page:** No founders, team, company history, or LinkedIn presence
 - **Customer evidence:** Hyland's and Hello Bello named in Technology page body copy — but no case study page, no testimonials, no "used with permission" attribution. Named customers without supporting evidence read as borrowed credibility
-- **Legal:** No Terms of Service, no Privacy Policy (US-operated platform with CCPA exposure)
+- **Legal:** ~~No Terms of Service, no Privacy Policy~~ → **Mitigation applied (#95):** Privacy Policy and Terms of Service placeholder links added to footer. Routes (`/privacy`, `/terms`) return 404 — presence signals intent; content requires legal review
 - **Credentials:** No Amazon SPN certification badge, no DUNS/EIN reference, no physical address (warehouses described as "DE/NJ/NY" with no street address)
 - **Contact:** Only `ai@supersonicbrick.com` + WeChat `Haoruiiii` — no phone number, no company address. For a company claiming 33K sqft of owned warehouse, a single WeChat handle as the primary contact erodes all credibility
 
@@ -59,6 +61,8 @@ Each number likely reflects a different scope (authorized SKUs / total catalog /
 - Opening claim: "Not a reseller. Not a 3PL."
 - Services offered: Amazon 1P (buy-and-resell = reseller behaviour), Silent Liquidation (grey-channel clearance), Store-in-Store (distribution), JD.com (cross-border operator)
 - "Silent Liquidation" (discreet inventory clearance) conflicts directly with "MAP enforcement" (brand price protection) — both offered by the same company. A brand will notice this tension immediately
+- **Mitigation applied (#95):** For Brands ServicesGrid now groups services into "Channel Coverage" and "Brand Control" — Silent Liquidation sits under Brand Control as a "discreet exit strategy", which softens the contradiction without removing it
+- **Remaining gap:** The underlying positioning tension ("Not a reseller" + Amazon 1P) is a brief-level issue and cannot be resolved at the frontend layer
 - **Recommendation:** Reframe as "multi-modal brand partner" or clearly categorise which services are primary vs supplementary
 
 ### 7. Agent naming style inconsistency
