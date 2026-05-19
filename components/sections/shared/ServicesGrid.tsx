@@ -11,19 +11,17 @@ interface Service {
   title: string
   description: string
   featured?: boolean
-  colSpan?: number    // lg col-span
-  mdColSpan?: number  // md col-span override (tablet)
 }
 
 // Icons and layout config are visual/component-level decisions.
 // Title and description are sourced from BRAND_SERVICES in lib/constants.ts.
 const SERVICES: Service[] = [
-  { icon: Globe,        title: BRAND_SERVICES[0].title, description: BRAND_SERVICES[0].description, featured: true, colSpan: 3 },
+  { icon: Globe,        title: BRAND_SERVICES[0].title, description: BRAND_SERVICES[0].description, featured: true },
   { icon: Store,        title: BRAND_SERVICES[1].title, description: BRAND_SERVICES[1].description },
   { icon: Map,          title: BRAND_SERVICES[2].title, description: BRAND_SERVICES[2].description },
   { icon: PackageOpen,  title: BRAND_SERVICES[3].title, description: BRAND_SERVICES[3].description },
   { icon: ShoppingCart, title: BRAND_SERVICES[4].title, description: BRAND_SERVICES[4].description },
-  { icon: ShieldCheck,  title: BRAND_SERVICES[5].title, description: BRAND_SERVICES[5].description, mdColSpan: 2 },
+  { icon: ShieldCheck,  title: BRAND_SERVICES[5].title, description: BRAND_SERVICES[5].description },
 ]
 
 export default function ServicesGrid() {
@@ -68,7 +66,7 @@ export default function ServicesGrid() {
 
         {/* Bento grid — gap-px, parent bg acts as grid lines */}
         <div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px overflow-hidden"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px overflow-hidden"
           style={{
             background: 'rgba(255,255,255,0.08)',
             borderRadius: '16px',
@@ -83,12 +81,7 @@ export default function ServicesGrid() {
               whileInView="visible"
               viewport={{ once: true, margin: '-40px' }}
               custom={i}
-              className={[
-                'group relative flex flex-col gap-4 p-8 transition-colors duration-200',
-                service.colSpan === 3 ? 'lg:col-span-3' : '',
-                (service.colSpan === 3 || service.mdColSpan === 2) ? 'md:col-span-2' : '',
-                (service.mdColSpan === 2 && !service.colSpan) ? 'lg:col-span-1' : '',
-              ].filter(Boolean).join(' ')}
+              className="group relative flex flex-col gap-4 p-8 transition-colors duration-200"
               style={{
                 background: 'var(--background)',
                 boxShadow: service.featured ? 'inset 0 2px 0 #3B82F6' : 'none',
