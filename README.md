@@ -61,6 +61,50 @@ Original implementation had content hardcoded in the component, duplicating `BRA
 
 ---
 
+## Trade-offs
+
+### Shopping Agent mockup: honesty over wow factor
+The mockup uses interactive-looking elements (search bar, results list, "Order Now"). Two options: (a) add micro-interactions and switchable query presets to make it feel alive, or (b) clearly frame it as a concept preview and remove the false affordances.
+
+Chose (b) — in a B2B context, a "broken" interactive element damages credibility more than a clearly-labelled static demo. The label `Preview · Concept Demo` and a static search bar cost nothing and prevent the "why doesn't this work?" moment.
+
+### Mobile: hiding the Shopping Agent mockup
+The mockup is part of a two-column hero composition on desktop. On mobile (single column), it appears *after* the CTA with no compositional context — a static, non-interactive panel the user may expect to interact with. The hero narrative is complete at the CTA; the mockup is additive on larger screens, not essential on mobile.
+
+Hiding it on mobile (`hidden md:flex`) was chosen over a stripped-down mobile version to avoid a half-finished feel on the most-used viewport. Documented in `CONTENT_DECISIONS.md`.
+
+### ServicesGrid: equal-width 3-col over 3+1 col-span layout
+Initial implementation gave "US Full-Channel E-commerce" a `col-span-2` at the tablet breakpoint to signal its importance. Design review flagged this as a structural error — content volume doesn't justify extra width, and the imbalanced layout read as a CSS mistake rather than intentional hierarchy.
+
+Revised to equal-width 3-col grid. The blue top accent line (`inset 0 2px 0 #3B82F6`) carries the "featured" signal without changing card dimensions. Signal through colour, not structure.
+
+### AnimatedStat: fallback-first counter
+`useMotionValue(0)` as the initial state meant any IntersectionObserver miss — slow connection, SSR, mid-page navigation — would leave the metric stuck at "0". Changed to `useState(numericValue)` with framer-motion's imperative `animate()` API: the correct number is always visible, and the count-up animation is a progressive enhancement, not a requirement.
+
+### Brief data inconsistencies: document, don't silently fix
+The source brief contained four distinct SKU figures across different pages (340K / 753K / 4.32M / 5M+), a conflicting AI agent count (7 claimed, 4 with real content), and an internal contradiction in refinery.ai's dimension count (8 vs 11). These were documented in `REVIEW_NOTES.md` rather than silently corrected — the numbers originate from the business and any change requires business verification, not a frontend judgment call.
+
+---
+
+## What I'd Do Next
+
+**1. Homepage narrative restructure (JTBD/PAS)**
+The current homepage lists capabilities. A stronger structure leads with the customer's problem: "Your brand is on 14 channels. You control none of them." — then presents SSB as the answer, backed by the metrics as proof, with the Shopping Agent as the concrete demonstration. This is the structure Stripe, Linear, and Vercel use: problem → approach → evidence → product → CTA. The current order buries the "why this matters" until the reader has already disengaged.
+
+**2. Domain-specific visual identity**
+The current visual language (dark background, blue accents, geometric grid) could belong to any B2B SaaS. SSB is a physical-goods distributor — warehouses, logistics networks, cross-channel flows. A faint network topology illustration (5–8% opacity, nodes = channels, edges = logistics paths) as the Hero background would anchor the brand in its actual domain without being literal or heavy-handed.
+
+**3. Hero typography with a point of view**
+Inter/Geist is the default B2B SaaS typeface. Pairing a variable serif (Instrument Serif, Fraunces) for the H1 with a sans-serif body would give the brand a typographic identity that's harder to copy and easier to remember. Risk: needs validation against the current token system and loading budget.
+
+**4. Lighthouse to 90+ across all four metrics**
+Current Lighthouse results are unverified at submission time. Priority fixes would be: image sizing optimisation (Next.js `<Image>` sizes prop), reducing unused JavaScript from animation libraries, and ensuring all interactive elements have accessible labels. Target: 90+ Performance, 95+ Accessibility.
+
+**5. Shopping Agent: switchable query presets**
+Instead of one static query, three preset buttons ("Anti-aging under $15 B2B" / "Wireless earbuds bulk Q4" / "Kids toys MOQ 24") each map to different hardcoded result sets. The mockup stays honest (clearly labelled as a demo) but becomes a narrative tool — the evaluator can see how the agent would handle different sourcing scenarios. This is the version I'd ship if the goal were a live product page rather than a challenge submission.
+
+---
+
 ## Tech Stack
 
 | Layer | Choice | Reason |
