@@ -162,7 +162,7 @@ export default function AIAgentCards() {
         style={{
           fontSize: 'var(--text-overline)',
           letterSpacing: 'var(--tracking-overline)',
-          color: '#64748B',
+          color: '#94A3B8',
         }}
       >
         In Production
@@ -192,7 +192,7 @@ export default function AIAgentCards() {
         style={{
           fontSize: 'var(--text-overline)',
           letterSpacing: 'var(--tracking-overline)',
-          color: '#64748B',
+          color: '#94A3B8',
         }}
       >
         In Development

@@ -12,11 +12,14 @@ export function AnimatedStat({
   suffix,
   decimals,
   index,
+  prominent = true,
 }: {
   numericValue: number
   suffix: string
   decimals: number
   index: number
+  /** prominent=true (default): full-size blue gradient. false: smaller, muted. */
+  prominent?: boolean
 }) {
   const ref = useRef<HTMLSpanElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-60px' })
@@ -41,13 +44,23 @@ export function AnimatedStat({
     <span
       ref={ref}
       className="font-bold tracking-tight tabular-nums leading-none"
-      style={{
-        fontSize: 'clamp(2.25rem, 3vw, 3rem)',
-        background: 'linear-gradient(135deg, #93C5FD 0%, #38BDF8 100%)',
-        WebkitBackgroundClip: 'text',
-        WebkitTextFillColor: 'transparent',
-        backgroundClip: 'text',
-      }}
+      style={
+        prominent
+          ? {
+              fontSize: 'clamp(2.25rem, 3vw, 3rem)',
+              background: 'linear-gradient(135deg, #93C5FD 0%, #38BDF8 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+            }
+          : {
+              fontSize: 'clamp(1.5rem, 2vw, 1.875rem)',
+              background: 'linear-gradient(135deg, #93C5FD 0%, #38BDF8 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+            }
+      }
     >
       {formatted}
       {suffix}

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { Globe, Store, Map, PackageOpen, ShoppingCart, ShieldCheck } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { fadeUp } from '@/lib/animations'
-import { BRAND_SERVICES } from '@/lib/constants'
+import { BRAND_SERVICES, BRAND_PROTECTION_STATS } from '@/lib/constants'
 
 interface Service {
   icon: LucideIcon
@@ -107,7 +107,7 @@ function GroupLabel({ label, index }: { label: string; index: number }) {
       style={{
         fontSize: 'var(--text-overline)',
         letterSpacing: 'var(--tracking-overline)',
-        color: '#64748B',
+        color: '#94A3B8',
       }}
     >
       {label}
@@ -181,7 +181,66 @@ export default function ServicesGrid() {
         {/* Group 2 — Brand Control */}
         <div>
           <GroupLabel label="Brand Control" index={6} />
-          <ServiceBentoGrid services={BRAND_CONTROL} startIndex={7} cols="lg:grid-cols-2" />
+          {/* 4-col grid: 2 service cards (1/4 each) + 1 stats panel (2/4) */}
+          <div
+            className="rounded-2xl overflow-hidden"
+            style={{ background: 'rgba(255,255,255,0.08)', gap: '1px', display: 'grid', border: '1px solid rgba(255,255,255,0.08)' }}
+          >
+            <div
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
+              style={{ gap: '1px' }}
+            >
+              {BRAND_CONTROL.map((service, i) => (
+                <ServiceCard key={service.title} service={service} index={7 + i} />
+              ))}
+
+              {/* Right anchor — brand protection stats */}
+              <motion.div
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: '-40px' }}
+                custom={9}
+                className="lg:col-span-2 flex flex-col justify-center gap-5 p-8"
+                style={{ background: 'var(--background)' }}
+              >
+                <p
+                  className="uppercase font-medium"
+                  style={{
+                    fontSize: 'var(--text-overline)',
+                    letterSpacing: 'var(--tracking-overline)',
+                    color: '#94A3B8',
+                  }}
+                >
+                  Brand Protection — By The Numbers
+                </p>
+                <div className="grid grid-cols-2 gap-4">
+                  {BRAND_PROTECTION_STATS.map((stat) => (
+                    <div key={stat.label}>
+                      <p
+                        className="font-bold leading-none mb-1"
+                        style={{
+                          fontSize: 'clamp(1.5rem, 2.5vw, 2rem)',
+                          color: '#FFFFFF',
+                          letterSpacing: '-0.02em',
+                        }}
+                      >
+                        {stat.value}
+                      </p>
+                      <p
+                        style={{
+                          fontSize: 'var(--text-overline)',
+                          color: '#94A3B8',
+                        }}
+                      >
+                        {stat.label}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+          </div>
         </div>
 
       </div>
