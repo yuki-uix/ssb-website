@@ -87,6 +87,7 @@ export default function ServicesGrid() {
                 'group relative flex flex-col gap-4 p-8 transition-colors duration-200',
                 service.colSpan === 3 ? 'lg:col-span-3' : '',
                 (service.colSpan === 3 || service.mdColSpan === 2) ? 'md:col-span-2' : '',
+                (service.mdColSpan === 2 && !service.colSpan) ? 'lg:col-span-1' : '',
               ].filter(Boolean).join(' ')}
               style={{
                 background: 'var(--background)',
