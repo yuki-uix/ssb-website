@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "SSB — A New Kind of Brand Distributor",
-  description: "Supersonic Brick LLC is a next-generation brand distributor combining owned logistics backbone with AI-driven e-commerce operations.",
+  description: "Supersonic Supply is a next-generation brand distributor combining owned logistics backbone with AI-driven e-commerce operations.",
 };
 
 export default function RootLayout({

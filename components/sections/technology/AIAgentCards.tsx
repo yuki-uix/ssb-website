@@ -115,7 +115,7 @@ function AgentCard({ agent, index, featured = false }: { agent: Agent; index: nu
 // ─── AIAgentCards ─────────────────────────────────────────────────────────────
 
 export default function AIAgentCards() {
-  const [featured, ...rest] = AI_AGENTS as unknown as Agent[]
+  const [featured, ...rest] = (AI_AGENTS as unknown as Agent[]).filter(a => a.category !== 'Coming Soon')
 
   return (
     <section className="max-w-7xl mx-auto px-6 py-20">
