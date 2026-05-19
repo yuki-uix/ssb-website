@@ -81,7 +81,7 @@ function ShoppingAgentMockup() {
           className="flex items-center gap-3 px-4 py-2.5 rounded-xl"
           style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}
         >
-          <svg className="w-3.5 h-3.5 shrink-0" style={{ color: '#60A5FA' }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <svg aria-hidden="true" className="w-3.5 h-3.5 shrink-0" style={{ color: '#60A5FA' }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
           <span className="text-sm" style={{ color: '#CBD5E1' }}>
@@ -148,7 +148,7 @@ function ShoppingAgentMockup() {
 
       {/* Powered by */}
       <div className="px-5 pb-4 flex items-center gap-1.5">
-        <svg className="w-3 h-3 shrink-0" style={{ color: '#64748B' }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <svg aria-hidden="true" className="w-3 h-3 shrink-0" style={{ color: '#64748B' }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
         </svg>
         <span className="text-[10px]" style={{ color: '#94A3B8' }}>
