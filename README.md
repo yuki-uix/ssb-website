@@ -127,6 +127,17 @@ Instead of one static query, three preset buttons ("Anti-aging under $15 B2B" / 
 | Desktop | 1440px | ✅ Pass |
 | Legacy mobile | 320px | ⚠️ Not supported (below minimum) |
 
+### Lighthouse (production — `ssb-website-three.vercel.app`)
+
+| Category | Score |
+|----------|-------|
+| Performance | 91 ✅ |
+| Accessibility | 96 ✅ |
+| Best Practices | 100 ✅ |
+| SEO | 100 ✅ |
+
+Raw report: [`docs/lighthouse.json`](./docs/lighthouse.json)
+
 ### Known limitations
 - **Minimum supported width: 375px.** 320px (iPhone SE 1st gen, 2016) is not in scope — market share < 1% for target B2B audience.
 - **Touch hover states.** `onMouseEnter` / `onMouseLeave` handlers do not fire on touch devices. Cards and nav links will not show hover styles on mobile. This is a browser limitation, not a bug.
