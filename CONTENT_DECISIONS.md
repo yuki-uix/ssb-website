@@ -34,7 +34,9 @@ Rationale:
 - Brand Protection, while technically differentiated (AI-driven MAP + grey market monitoring), answers a brand's second question: "will you protect my brand while doing it?" — it is a trust-builder, not the primary reason to choose SSB
 - Two featured cards would dilute the main message and create ambiguity about SSB's #1 proposition
 
-**Decision: maintain current implementation. Do not add featured treatment to any other card.**
+**Decision: 3-col equal-width grid. US Full-Channel retains blue top accent line as the sole featured signal. No col-span differences.**
+
+> Previous decision (3+1 col-span layout) was revised after design review flagged it as a structural error — content volume does not justify the extra width. Equal width with accent line provides cleaner differentiation.
 
 ---
 
