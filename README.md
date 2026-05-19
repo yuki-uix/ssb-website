@@ -8,6 +8,8 @@ Marketing website for **Supersonic Supply (SSB)**, a next-generation US brand di
 
 **https://ssb-website-three.vercel.app/**
 
+![Homepage Desktop](./docs/screenshot-desktop.png)
+
 ---
 
 ## Pages Delivered
@@ -18,41 +20,6 @@ Marketing website for **Supersonic Supply (SSB)**, a next-generation US brand di
 | For Brands | `/for-brands` | ✅ |
 | Technology | `/technology` | ✅ |
 | Contact | `/contact` | ✅ |
-
----
-
-## Getting Started
-
-```bash
-npm install
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000).
-
-**Recommended verification breakpoints** (Chrome DevTools):
-```
-375px → Mobile
-768px → Tablet
-1440px → Desktop
-```
-
-**Type check:**
-```bash
-npx tsc --noEmit   # zero errors at submission
-```
-
----
-
-## Tech Stack
-
-| Layer | Choice | Reason |
-|-------|--------|--------|
-| Framework | Next.js 15 (App Router) | Per challenge spec |
-| Language | TypeScript | Type safety, zero `tsc` errors enforced |
-| Styling | Tailwind CSS + CSS custom properties | Utility classes + design token system |
-| Animation | Framer Motion | `useAnimationFrame` physics loop, `AnimatePresence` |
-| Icons | Lucide React | Consistent stroke-weight icon system |
 
 ---
 
@@ -100,6 +67,18 @@ Original implementation had content hardcoded in the component, duplicating `BRA
 
 ---
 
+## Tech Stack
+
+| Layer | Choice | Reason |
+|-------|--------|--------|
+| Framework | Next.js 15 (App Router) | Per challenge spec |
+| Language | TypeScript | Type safety, zero `tsc` errors enforced |
+| Styling | Tailwind CSS + CSS custom properties | Utility classes + design token system |
+| Animation | Framer Motion | `useAnimationFrame` physics loop, `AnimatePresence` |
+| Icons | Lucide React | Consistent stroke-weight icon system |
+
+---
+
 ## QA Sign-off
 
 ### Verified breakpoints
@@ -125,6 +104,29 @@ During development, several inconsistencies were identified in the source brief.
 - **AI Agent count:** Brief states "7 in production" but provides content for 4; 3 are placeholders.
 - **SKU figures:** Four different numbers appear across pages (340K / 753K / 4.32M / 5M+) without defined relationships.
 - **refinery.ai:** "8-dimension" in description, "11-dimension" in bullets — same entry.
-- **Channel count:** "10+ channels" (metrics) vs "14+ wholesale distributors" (copy) refer to different things but appear in parallel contexts.
+- **Channel count:** "10+ channels" (metrics) vs "14+ wholesale distributors" (copy) refer to different things but appear in parallel contexts without explanation.
 
 These are documented rather than silently corrected, as the numbers originate from the brief and any change would require business verification.
+
+---
+
+## Getting Started
+
+```bash
+npm install
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000).
+
+**Recommended verification breakpoints** (Chrome DevTools):
+```
+375px → Mobile
+768px → Tablet
+1440px → Desktop
+```
+
+**Type check:**
+```bash
+npx tsc --noEmit   # zero errors at submission
+```
