@@ -8,9 +8,12 @@
   --border: rgba(59, 130, 246, 0.15);
   --border-hover: rgba(59, 130, 246, 0.4);
 
-  --foreground: #F8FAFC;
-  --text-secondary: #94A3B8;
-  --text-muted: #475569;
+  /* Semantic text hierarchy — matches AGENTS.md color rules */
+  --foreground: #FFFFFF;          /* Primary text: H1–H3, high-priority copy */
+  --text-body: #CBD5E1;           /* Secondary text: body, subheadlines, metric labels */
+  --text-secondary: #94A3B8;      /* Auxiliary text: overlines, category labels */
+  --text-decorative: #64748B;     /* Decorative only — NOT for informational text */
+  --text-muted: #475569;          /* Forbidden for meaningful text (WCAG fail on dark bg) */
 
   --accent-blue: #3B82F6;
   --accent-cyan: #0EA5E9;
@@ -61,14 +64,24 @@
 }
 
 @theme inline {
+  /* Surface */
   --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --color-surface: var(--surface);
   --color-surface-card: var(--surface-card);
+  /* Text hierarchy */
+  --color-foreground: var(--foreground);
+  --color-text-body: var(--text-body);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-decorative: var(--text-decorative);
+  --color-text-muted: var(--text-muted);
+  /* Accent */
   --color-accent-blue: var(--accent-blue);
   --color-accent-cyan: var(--accent-cyan);
-  --color-text-secondary: var(--text-secondary);
-  --color-text-muted: var(--text-muted);
+  --color-accent-purple: var(--accent-purple);
+  /* Glow */
+  --color-glow-blue: var(--glow-blue);
+  --color-glow-cyan: var(--glow-cyan);
+  /* Typography */
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
