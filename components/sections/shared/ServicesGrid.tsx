@@ -15,14 +15,122 @@ interface Service {
 
 // Icons and layout config are visual/component-level decisions.
 // Title and description are sourced from BRAND_SERVICES in lib/constants.ts.
-const SERVICES: Service[] = [
+const CHANNEL_COVERAGE: Service[] = [
   { icon: Globe,        title: BRAND_SERVICES[0].title, description: BRAND_SERVICES[0].description, featured: true },
   { icon: Store,        title: BRAND_SERVICES[1].title, description: BRAND_SERVICES[1].description },
   { icon: Map,          title: BRAND_SERVICES[2].title, description: BRAND_SERVICES[2].description },
-  { icon: PackageOpen,  title: BRAND_SERVICES[3].title, description: BRAND_SERVICES[3].description },
   { icon: ShoppingCart, title: BRAND_SERVICES[4].title, description: BRAND_SERVICES[4].description },
-  { icon: ShieldCheck,  title: BRAND_SERVICES[5].title, description: BRAND_SERVICES[5].description },
 ]
+
+const BRAND_CONTROL: Service[] = [
+  { icon: ShieldCheck,  title: BRAND_SERVICES[5].title, description: BRAND_SERVICES[5].description, featured: true },
+  { icon: PackageOpen,  title: BRAND_SERVICES[3].title, description: BRAND_SERVICES[3].description },
+]
+
+function ServiceCard({ service, index }: { service: Service; index: number }) {
+  return (
+    <motion.div
+      key={service.title}
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: '-40px' }}
+      custom={index}
+      className="group relative flex flex-col gap-4 p-8 transition-colors duration-200"
+      style={{
+        background: 'var(--background)',
+        boxShadow: service.featured ? 'inset 0 2px 0 #3B82F6' : 'none',
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.background = 'rgba(59,130,246,0.06)'
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.background = 'var(--background)'
+      }}
+    >
+      {/* Icon */}
+      <div
+        className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
+        style={{
+          background: 'rgba(59,130,246,0.1)',
+          border: '1px solid rgba(59,130,246,0.2)',
+        }}
+      >
+        <service.icon
+          className="w-5 h-5"
+          style={{ color: '#60A5FA' }}
+          strokeWidth={1.5}
+        />
+      </div>
+
+      {/* Title */}
+      <h3
+        className="font-semibold"
+        style={{
+          fontSize: 'var(--text-h3)',
+          color: '#FFFFFF',
+          lineHeight: '1.3',
+        }}
+      >
+        {service.title}
+      </h3>
+
+      {/* Description */}
+      <p
+        style={{
+          fontSize: 'var(--text-body-sm)',
+          color: '#CBD5E1',
+          lineHeight: 'var(--leading-body)',
+        }}
+      >
+        {service.description}
+      </p>
+
+      {/* Bottom accent on hover */}
+      <div
+        className="absolute bottom-0 left-0 h-px w-0 group-hover:w-full transition-all duration-300"
+        style={{ background: '#3B82F6' }}
+      />
+    </motion.div>
+  )
+}
+
+function GroupLabel({ label, index }: { label: string; index: number }) {
+  return (
+    <motion.p
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: '-40px' }}
+      custom={index}
+      className="uppercase font-medium mb-4"
+      style={{
+        fontSize: 'var(--text-overline)',
+        letterSpacing: 'var(--tracking-overline)',
+        color: '#64748B',
+      }}
+    >
+      {label}
+    </motion.p>
+  )
+}
+
+function ServiceBentoGrid({ services, startIndex, cols = 'lg:grid-cols-4' }: { services: Service[]; startIndex: number; cols?: string }) {
+  return (
+    <div
+      className={`grid grid-cols-1 md:grid-cols-2 ${cols} gap-px overflow-hidden`}
+      style={{
+        background: 'rgba(255,255,255,0.08)',
+        borderRadius: '16px',
+        border: '1px solid rgba(255,255,255,0.08)',
+      }}
+    >
+      {services.map((service, i) => (
+        <ServiceCard key={service.title} service={service} index={startIndex + i} />
+      ))}
+    </div>
+  )
+}
 
 export default function ServicesGrid() {
   return (
@@ -64,80 +172,16 @@ export default function ServicesGrid() {
           </h2>
         </motion.div>
 
-        {/* Bento grid — gap-px, parent bg acts as grid lines */}
-        <div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px overflow-hidden"
-          style={{
-            background: 'rgba(255,255,255,0.08)',
-            borderRadius: '16px',
-            border: '1px solid rgba(255,255,255,0.08)',
-          }}
-        >
-          {SERVICES.map((service, i) => (
-            <motion.div
-              key={service.title}
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-40px' }}
-              custom={i}
-              className="group relative flex flex-col gap-4 p-8 transition-colors duration-200"
-              style={{
-                background: 'var(--background)',
-                boxShadow: service.featured ? 'inset 0 2px 0 #3B82F6' : 'none',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'rgba(59,130,246,0.06)'
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'var(--background)'
-              }}
-            >
-              {/* Icon */}
-              <div
-                className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
-                style={{
-                  background: 'rgba(59,130,246,0.1)',
-                  border: '1px solid rgba(59,130,246,0.2)',
-                }}
-              >
-                <service.icon
-                  className="w-5 h-5"
-                  style={{ color: '#60A5FA' }}
-                  strokeWidth={1.5}
-                />
-              </div>
+        {/* Group 1 — Channel Coverage */}
+        <div className="mb-10">
+          <GroupLabel label="Channel Coverage" index={1} />
+          <ServiceBentoGrid services={CHANNEL_COVERAGE} startIndex={2} cols="lg:grid-cols-4" />
+        </div>
 
-              {/* Title */}
-              <h3
-                className="font-semibold"
-                style={{
-                  fontSize: 'var(--text-h3)',
-                  color: '#FFFFFF',
-                  lineHeight: '1.3',
-                }}
-              >
-                {service.title}
-              </h3>
-
-              {/* Description */}
-              <p
-                style={{
-                  fontSize: 'var(--text-body-sm)',
-                  color: '#CBD5E1',
-                  lineHeight: 'var(--leading-body)',
-                }}
-              >
-                {service.description}
-              </p>
-
-              {/* Bottom accent on hover */}
-              <div
-                className="absolute bottom-0 left-0 h-px w-0 group-hover:w-full transition-all duration-300"
-                style={{ background: '#3B82F6' }}
-              />
-            </motion.div>
-          ))}
+        {/* Group 2 — Brand Control */}
+        <div>
+          <GroupLabel label="Brand Control" index={6} />
+          <ServiceBentoGrid services={BRAND_CONTROL} startIndex={7} cols="lg:grid-cols-2" />
         </div>
 
       </div>

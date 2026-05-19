@@ -116,10 +116,30 @@ export default function Footer() {
       {/* Copyright bar */}
       <div style={{ borderTop: '1px solid rgba(255,255,255,0.05)' }}>
         <div
-          className="max-w-7xl mx-auto px-6 py-4"
+          className="max-w-7xl mx-auto px-6 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2"
           style={{ fontSize: 'var(--text-caption)', color: '#64748B' }}
         >
-          © 2026 Supersonic Brick LLC. All rights reserved.
+          <span>© 2026 Supersonic Brick LLC. All rights reserved.</span>
+          <div className="flex gap-4">
+            <Link
+              href="/privacy"
+              className="transition-colors duration-150"
+              style={{ color: '#64748B' }}
+              onMouseEnter={(e) => { e.currentTarget.style.color = '#94A3B8' }}
+              onMouseLeave={(e) => { e.currentTarget.style.color = '#64748B' }}
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              href="/terms"
+              className="transition-colors duration-150"
+              style={{ color: '#64748B' }}
+              onMouseEnter={(e) => { e.currentTarget.style.color = '#94A3B8' }}
+              onMouseLeave={(e) => { e.currentTarget.style.color = '#64748B' }}
+            >
+              Terms of Service
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

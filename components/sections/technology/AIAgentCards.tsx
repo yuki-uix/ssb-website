@@ -116,6 +116,8 @@ function AgentCard({ agent, index, featured = false }: { agent: Agent; index: nu
 
 export default function AIAgentCards() {
   const [featured, ...rest] = AI_AGENTS as unknown as Agent[]
+  const production = rest.filter((a) => !a.placeholder)
+  const development = rest.filter((a) => a.placeholder)
 
   return (
     <section className="max-w-7xl mx-auto px-6 py-20">
@@ -154,23 +156,57 @@ export default function AIAgentCards() {
         </h2>
       </motion.div>
 
-      {/* Bento grid */}
+      {/* Group: In Production */}
+      <p
+        className="uppercase font-medium mb-4"
+        style={{
+          fontSize: 'var(--text-overline)',
+          letterSpacing: 'var(--tracking-overline)',
+          color: '#64748B',
+        }}
+      >
+        In Production
+      </p>
       <div
-        className="rounded-2xl overflow-hidden"
+        className="rounded-2xl overflow-hidden mb-10"
         style={{ background: 'rgba(255,255,255,0.07)', gap: '1px', display: 'grid' }}
       >
-        {/* Row 1: Featured card (full width) */}
+        {/* Featured card (full width) */}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '1px' }}>
           <AgentCard agent={featured} index={0} featured />
         </div>
-
-        {/* Row 2–3: Remaining 6 — responsive cols */}
+        {/* claim.ai / panner.ai / refinery.ai */}
         <div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
           style={{ gap: '1px' }}
         >
-          {rest.map((agent, i) => (
+          {production.map((agent, i) => (
             <AgentCard key={agent.name} agent={agent} index={i + 1} />
+          ))}
+        </div>
+      </div>
+
+      {/* Group: In Development */}
+      <p
+        className="uppercase font-medium mb-4"
+        style={{
+          fontSize: 'var(--text-overline)',
+          letterSpacing: 'var(--tracking-overline)',
+          color: '#64748B',
+        }}
+      >
+        In Development
+      </p>
+      <div
+        className="rounded-2xl overflow-hidden"
+        style={{ background: 'rgba(255,255,255,0.07)', gap: '1px', display: 'grid' }}
+      >
+        <div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+          style={{ gap: '1px' }}
+        >
+          {development.map((agent, i) => (
+            <AgentCard key={agent.name} agent={agent} index={i + 4} />
           ))}
         </div>
       </div>
