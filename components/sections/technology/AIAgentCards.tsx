@@ -3,18 +3,8 @@
 import { useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { AI_AGENTS } from '@/lib/constants'
+import type { Agent } from '@/lib/constants'
 import { fadeUp, ease } from '@/lib/animations'
-
-// ─── Types ────────────────────────────────────────────────────────────────────
-
-type Agent = {
-  name: string
-  category: string
-  tagline: string
-  description: string
-  bullets: readonly string[]
-  placeholder?: boolean
-}
 
 // ─── AgentCard ────────────────────────────────────────────────────────────────
 
@@ -134,7 +124,7 @@ function AgentCard({ agent, index, featured = false }: { agent: Agent; index: nu
 // ─── AIAgentCards ─────────────────────────────────────────────────────────────
 
 export default function AIAgentCards() {
-  const [featured, ...rest] = AI_AGENTS as unknown as Agent[]
+  const [featured, ...rest] = AI_AGENTS
   const production = rest.filter((a) => !a.placeholder)
   const development = rest.filter((a) => a.placeholder)
 

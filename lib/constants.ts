@@ -135,7 +135,19 @@ export const TECH_METRICS = [
   { value: "28K",   numericValue: 28,   suffix: "K", decimals: 0, label: "Brands Tracked" },
 ] as const
 
-export const AI_AGENTS = [
+// ─── AI Agent type ────────────────────────────────────────────────────────────
+// Exported so AIAgentCards can import without a local re-definition or cast.
+
+export type Agent = {
+  name: string
+  category: string
+  tagline: string
+  description: string
+  bullets: string[]
+  placeholder?: boolean
+}
+
+export const AI_AGENTS: Agent[] = [
   {
     name: "Shopping Agent",
     category: "Product Discovery",
@@ -208,4 +220,4 @@ export const AI_AGENTS = [
     bullets: ["— Placeholder —"],
     placeholder: true,
   },
-] as const
+]
