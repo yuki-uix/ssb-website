@@ -7,8 +7,8 @@ export default function HomePage() {
   return (
     <main style={{ background: 'var(--background)' }}>
       <HomeHero />
-      <MetricsBar />
       <PillarsSection />
+      <MetricsBar />
       <HomeCTA />
     </main>
   )
