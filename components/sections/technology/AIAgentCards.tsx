@@ -1,5 +1,6 @@
 'use client'
 
+import { useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { AI_AGENTS } from '@/lib/constants'
 import { fadeUp, ease } from '@/lib/animations'
@@ -19,9 +20,27 @@ type Agent = {
 
 function AgentCard({ agent, index, featured = false }: { agent: Agent; index: number; featured?: boolean }) {
   const isPlaceholder = agent.placeholder === true
+  const cardRef = useRef<HTMLDivElement>(null)
+  const [mouse, setMouse] = useState<{ x: number; y: number } | null>(null)
+
+  function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
+    const rect = e.currentTarget.getBoundingClientRect()
+    setMouse({ x: e.clientX - rect.left, y: e.clientY - rect.top })
+  }
+
+  function handleMouseLeave() {
+    setMouse(null)
+  }
+
+  const bg = isPlaceholder
+    ? 'rgba(255,255,255,0.012)'
+    : mouse
+      ? `radial-gradient(280px circle at ${mouse.x}px ${mouse.y}px, rgba(59,130,246,0.13) 0%, transparent 65%), var(--background)`
+      : 'var(--background)'
 
   return (
     <motion.div
+      ref={cardRef}
       custom={index}
       variants={fadeUp}
       initial="hidden"
@@ -29,14 +48,14 @@ function AgentCard({ agent, index, featured = false }: { agent: Agent; index: nu
       viewport={{ once: true, margin: '-60px' }}
       className={`${isPlaceholder ? '' : 'group '}relative flex flex-col p-6 h-full`}
       style={{
-        background: isPlaceholder ? 'rgba(255,255,255,0.012)' : 'var(--background)',
+        background: bg,
         boxShadow: featured ? 'inset 0 2px 0 #3B82F6' : 'inset 0 2px 0 rgba(59,130,246,0.25)',
         opacity: isPlaceholder ? 0.6 : 1,
-        cursor: isPlaceholder ? 'default' : 'auto',
+        cursor: 'default',
       }}
       {...(!isPlaceholder && {
-        onMouseEnter: (e) => { e.currentTarget.style.background = 'rgba(59,130,246,0.06)' },
-        onMouseLeave: (e) => { e.currentTarget.style.background = 'var(--background)' },
+        onMouseMove: handleMouseMove,
+        onMouseLeave: handleMouseLeave,
       })}
     >
       {/* Category badge */}

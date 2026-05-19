@@ -1,44 +1,98 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { HERO } from '@/lib/constants'
 import { ease, floatingGlow } from '@/lib/animations'
 import { GradientButton } from '@/components/ui/GradientButton'
 
+// ─── Typewriter hook ──────────────────────────────────────────────────────────
+
+const SEARCH_QUERIES = [
+  'anti-aging skincare under $15',
+  'retinol cream B2B · MOQ 24',
+  'eye cream bulk · case pack 12',
+  'facial moisturizer wholesale',
+]
+
+function useTypewriter(queries: string[], typingMs = 62, deletingMs = 32, pauseMs = 1800) {
+  const [displayed, setDisplayed] = useState(queries[0])
+  const [queryIdx, setQueryIdx] = useState(0)
+  const [cardIdx, setCardIdx] = useState(0)
+  const [phase, setPhase] = useState<'typing' | 'deleting'>('typing')
+
+  useEffect(() => {
+    const target = queries[queryIdx]
+
+    if (phase === 'typing') {
+      if (displayed.length < target.length) {
+        const t = setTimeout(() => setDisplayed(target.slice(0, displayed.length + 1)), typingMs)
+        return () => clearTimeout(t)
+      }
+      // fully typed — switch cards immediately, then pause before deleting
+      setCardIdx((i) => (i + 1) % queries.length)
+      const t = setTimeout(() => setPhase('deleting'), pauseMs)
+      return () => clearTimeout(t)
+    }
+
+    // deleting
+    if (displayed.length > 0) {
+      const t = setTimeout(() => setDisplayed(displayed.slice(0, -1)), deletingMs)
+      return () => clearTimeout(t)
+    }
+    // fully deleted — advance query text
+    setQueryIdx((i) => (i + 1) % queries.length)
+    setPhase('typing')
+  }, [displayed, phase, queryIdx, queries, typingMs, deletingMs, pauseMs])
+
+  return { text: displayed, cardIdx }
+}
+
 // ─── Shopping Agent Mockup ────────────────────────────────────────────────────
 
-const PRODUCT_RESULTS = [
+type Product = { name: string; brand: string; sku: string; price: string; badge: string; badgeColor: string }
+type QueryResult = { count: string; products: Product[] }
+
+const QUERY_RESULTS: QueryResult[] = [
   {
-    name: 'Neutrogena Rapid Wrinkle Repair Retinol',
-    brand: 'Neutrogena',
-    sku: 'NTG-RWR-1.7OZ',
-    price: '$12.40',
-    moq: 'MOQ 24',
-    badge: 'Best Match',
-    badgeColor: '#3B82F6',
+    count: '2,847',
+    products: [
+      { name: 'Neutrogena Rapid Wrinkle Repair Retinol', brand: 'Neutrogena', sku: 'NTG-RWR-1.7OZ', price: '$12.40', badge: 'Best Match', badgeColor: '#3B82F6' },
+      { name: 'CeraVe Eye Repair Cream',                brand: 'CeraVe',     sku: 'CVE-ERC-0.5OZ', price: '$14.99', badge: 'In Stock',   badgeColor: '#10B981' },
+      { name: 'RoC Retinol Correxion Line Serum',       brand: 'RoC',        sku: 'ROC-RCS-1OZ',   price: '$13.20', badge: 'Top Seller', badgeColor: '#8B5CF6' },
+    ],
   },
   {
-    name: 'CeraVe Eye Repair Cream',
-    brand: 'CeraVe',
-    sku: 'CVE-ERC-0.5OZ',
-    price: '$14.99',
-    moq: 'MOQ 12',
-    badge: 'In Stock',
-    badgeColor: '#10B981',
+    count: '1,203',
+    products: [
+      { name: 'RoC Retinol Correxion Line Serum',       brand: 'RoC',        sku: 'ROC-RCS-1OZ',   price: '$13.20', badge: 'Best Match', badgeColor: '#3B82F6' },
+      { name: 'Neutrogena Rapid Wrinkle Repair Retinol', brand: 'Neutrogena', sku: 'NTG-RWR-1.7OZ', price: '$12.40', badge: 'MOQ Met',    badgeColor: '#10B981' },
+      { name: "L'Oréal Revitalift Retinol Serum",        brand: "L'Oréal",   sku: 'LOR-RVL-1OZ',   price: '$11.80', badge: 'New',        badgeColor: '#F59E0B' },
+    ],
   },
   {
-    name: 'RoC Retinol Correxion Line Serum',
-    brand: 'RoC',
-    sku: 'ROC-RCS-1OZ',
-    price: '$13.20',
-    moq: 'MOQ 24',
-    badge: 'Top Seller',
-    badgeColor: '#8B5CF6',
+    count: '891',
+    products: [
+      { name: 'CeraVe Eye Repair Cream',          brand: 'CeraVe',     sku: 'CVE-ERC-0.5OZ', price: '$14.99', badge: 'Best Match', badgeColor: '#3B82F6' },
+      { name: 'Neutrogena Rapid Eye Repair',       brand: 'Neutrogena', sku: 'NTG-RER-0.5OZ', price: '$13.50', badge: 'In Stock',   badgeColor: '#10B981' },
+      { name: 'Olay Eyes Ultimate Eye Cream',      brand: 'Olay',       sku: 'OLY-EUE-0.5OZ', price: '$12.90', badge: 'Bulk Deal',  badgeColor: '#8B5CF6' },
+    ],
+  },
+  {
+    count: '3,412',
+    products: [
+      { name: 'CeraVe Moisturizing Cream',              brand: 'CeraVe',     sku: 'CVE-MC-16OZ',   price: '$9.80',  badge: 'Best Match', badgeColor: '#3B82F6' },
+      { name: 'Neutrogena Hydro Boost Gel Cream',       brand: 'Neutrogena', sku: 'NTG-HBG-1.7OZ', price: '$11.20', badge: 'Top Seller', badgeColor: '#8B5CF6' },
+      { name: 'Olay Regenerist Micro-Sculpting Cream',  brand: 'Olay',       sku: 'OLY-RMS-1.7OZ', price: '$14.50', badge: 'In Stock',   badgeColor: '#10B981' },
+    ],
   },
 ]
 
 function ShoppingAgentMockup() {
+  const { text: query, cardIdx } = useTypewriter(SEARCH_QUERIES)
+  const current = QUERY_RESULTS[cardIdx]
+
   return (
     <div
       className="relative w-full max-w-[480px] rounded-2xl overflow-hidden"
@@ -83,17 +137,37 @@ function ShoppingAgentMockup() {
             <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
           <span className="text-sm" style={{ color: '#CBD5E1' }}>
-            anti-aging skincare under $15 for B2B
+            {query}
+            <span
+              className="inline-block w-px h-[14px] ml-0.5 align-middle"
+              style={{
+                background: '#60A5FA',
+                animation: 'blink 1.1s step-start infinite',
+              }}
+            />
           </span>
         </div>
-        <p className="text-[11px] mt-2.5 ml-1" style={{ color: '#94A3B8' }}>
-          ✦ Showing <span style={{ color: '#60A5FA', fontWeight: 600 }}>2,847 results</span> from 5M+ SKUs · Sorted by margin
-        </p>
+        <motion.p
+          key={cardIdx}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4, ease: 'easeOut' }}
+          className="text-[11px] mt-2.5 ml-1"
+          style={{ color: '#94A3B8' }}
+        >
+          ✦ Showing <span style={{ color: '#60A5FA', fontWeight: 600 }}>{current.count} results</span> from 5M+ SKUs · Sorted by margin
+        </motion.p>
       </div>
 
-      {/* Product results — mobile: first card only, md+: all three */}
-      <div className="px-5 py-3 space-y-2">
-        {PRODUCT_RESULTS.map((product, i) => (
+      {/* Product results — fade in new set when queryIdx changes */}
+      <motion.div
+        key={cardIdx}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.4, ease: 'easeOut' }}
+        className="px-5 py-3 space-y-2"
+      >
+        {current.products.map((product, i) => (
           <div
             key={product.sku}
             className={`flex items-center gap-3 p-3 rounded-xl${i > 0 ? ' hidden md:flex' : ''}`}
@@ -122,9 +196,10 @@ function ShoppingAgentMockup() {
             </div>
           </div>
         ))}
-      </div>
+      </motion.div>
 
       {/* Footer — PO ready */}
+
       <div
         className="mx-5 mb-4 mt-2 flex items-center justify-between px-4 py-3 rounded-xl"
         style={{ background: 'rgba(59,130,246,0.08)', border: '1px solid rgba(59,130,246,0.2)' }}
