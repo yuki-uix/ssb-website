@@ -124,6 +124,39 @@ export default function ContactPage() {
               />
             </div>
 
+            {/* Role + Primary Interest row */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div className="flex flex-col gap-1.5">
+                <label style={labelStyle}>Your Role</label>
+                <select
+                  style={selectStyle}
+                  onFocus={(e) => { e.currentTarget.style.borderColor = '#3B82F6' }}
+                  onBlur={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.10)' }}
+                >
+                  <option value="">Select role…</option>
+                  <option>Brand Manager</option>
+                  <option>Buyer</option>
+                  <option>Distributor</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div className="flex flex-col gap-1.5">
+                <label style={labelStyle}>Primary Interest</label>
+                <select
+                  style={selectStyle}
+                  onFocus={(e) => { e.currentTarget.style.borderColor = '#3B82F6' }}
+                  onBlur={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.10)' }}
+                >
+                  <option value="">Select interest…</option>
+                  <option>US E-commerce</option>
+                  <option>China / JD.com</option>
+                  <option>Brand Protection</option>
+                  <option>Logistics</option>
+                  <option>Other</option>
+                </select>
+              </div>
+            </div>
+
             {/* Message */}
             <div className="flex flex-col gap-1.5">
               <label style={labelStyle}>How can we help?</label>
@@ -187,4 +220,14 @@ const inputStyle: React.CSSProperties = {
   fontSize: 'var(--text-body)',
   outline: 'none',
   transition: 'border-color 0.15s ease',
+}
+
+const selectStyle: React.CSSProperties = {
+  ...inputStyle,
+  cursor: 'pointer',
+  appearance: 'none',
+  backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394A3B8' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")`,
+  backgroundRepeat: 'no-repeat',
+  backgroundPosition: 'right 1rem center',
+  paddingRight: '2.5rem',
 }
