@@ -20,7 +20,7 @@ export function PageCTA({ overline, headline, body, buttonLabel, href }: PageCTA
   return (
     <section
       className="relative overflow-hidden"
-      style={{ borderTop: '1px solid rgba(59,130,246,0.12)' }}
+      style={{ borderTop: '1px solid rgba(59,130,246,0.2)' }}
     >
       {/* Ambient radial glow */}
       <div
@@ -31,7 +31,7 @@ export function PageCTA({ overline, headline, body, buttonLabel, href }: PageCTA
         }}
       />
 
-      <div className="relative max-w-7xl mx-auto px-6 py-32 flex flex-col items-center text-center">
+      <div className="relative max-w-7xl mx-auto px-6 py-24 flex flex-col items-center text-center">
 
         {/* Overline */}
         <motion.p

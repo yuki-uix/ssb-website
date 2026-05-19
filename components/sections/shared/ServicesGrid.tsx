@@ -138,7 +138,7 @@ export default function ServicesGrid() {
       className="relative"
       style={{ borderTop: '1px solid rgba(59,130,246,0.12)' }}
     >
-      <div className="max-w-7xl mx-auto px-6 py-24">
+      <div className="max-w-7xl mx-auto px-6 py-16">
 
         {/* Section header */}
         <motion.div
