@@ -201,7 +201,7 @@ export default function ServicesGrid() {
                 whileInView="visible"
                 viewport={{ once: true, margin: '-40px' }}
                 custom={9}
-                className="lg:col-span-2 flex flex-col justify-center gap-5 p-8"
+                className="md:col-span-2 lg:col-span-2 flex flex-col justify-center gap-5 p-8"
                 style={{ background: 'var(--background)' }}
               >
                 <p

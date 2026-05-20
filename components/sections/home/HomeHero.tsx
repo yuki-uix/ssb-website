@@ -30,8 +30,8 @@ function useTypewriter(queries: string[], typingMs = 62, deletingMs = 32, pauseM
         const t = setTimeout(() => setDisplayed(target.slice(0, displayed.length + 1)), typingMs)
         return () => clearTimeout(t)
       }
-      // fully typed — switch cards immediately, then pause before deleting
-      setCardIdx((i) => (i + 1) % queries.length)
+      // fully typed — switch cards immediately (idempotent: closure value, not functional update)
+      setCardIdx((queryIdx + 1) % queries.length)
       const t = setTimeout(() => setPhase('deleting'), pauseMs)
       return () => clearTimeout(t)
     }
@@ -41,8 +41,8 @@ function useTypewriter(queries: string[], typingMs = 62, deletingMs = 32, pauseM
       const t = setTimeout(() => setDisplayed(displayed.slice(0, -1)), deletingMs)
       return () => clearTimeout(t)
     }
-    // fully deleted — advance query text
-    setQueryIdx((i) => (i + 1) % queries.length)
+    // fully deleted — advance query text (idempotent)
+    setQueryIdx((queryIdx + 1) % queries.length)
     setPhase('typing')
   }, [displayed, phase, queryIdx, queries, typingMs, deletingMs, pauseMs])
 
@@ -170,7 +170,7 @@ function ShoppingAgentMockup() {
         {current.products.map((product, i) => (
           <div
             key={product.sku}
-            className={`flex items-center gap-3 p-3 rounded-xl${i > 0 ? ' hidden md:flex' : ''}`}
+            className="flex items-center gap-3 p-3 rounded-xl"
             style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}
           >
             <div
