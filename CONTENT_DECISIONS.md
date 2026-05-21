@@ -83,6 +83,45 @@ Note: differentiation rank informs copy quality and specificity, not card size o
 
 ---
 
+## CTA Text — Intentional Variation by Page Position and Audience
+
+### Decision
+**CTA button text varies by page and position. This is a deliberate conversion strategy, not naming inconsistency.**
+
+| Location | CTA Text | Rationale |
+|----------|----------|-----------|
+| Navbar | "Get in Touch" | Global, audience-neutral entry point |
+| Homepage Hero | "Get in Touch" | Broadest audience; lowest friction first impression |
+| For Brands Hero | "Get in Touch" | Same low-friction principle at top of page |
+| For Brands page-end CTA | "Book a Brand Consultation" | Visitor who reached the bottom of For Brands is high-intent; brand-owner language signals a structured process |
+| Technology page-end CTA | "Request a Demo" | Visitor who read through AI agent cards is evaluating capability; "Demo" matches their mental model |
+
+### Why this is not inconsistency
+All CTAs route to `/contact`. The variation is in **positioning language**, not destination. A brand owner who reads "Book a Brand Consultation" understands they will speak to someone about their brand — a higher-commitment framing that matches the intent of someone who scrolled through an entire page. Applying "Get in Touch" everywhere would flatten this signal.
+
+### Visual form is unified
+All CTAs use the same `GradientButton` component — identical colour, size, and shape. The variation is text only. Visual system is consistent; copy is contextual.
+
+---
+
+## SKU and Catalog Data — Source Attribution
+
+### All numbers sourced directly from client brief
+
+The following figures appear across the site with different values. Each reflects a **different scope of data**, as defined in the provided brief. They are not contradictory — they describe different layers of the platform.
+
+| Number | Label used on site | Scope | Brief source |
+|--------|-------------------|-------|--------------|
+| `340K+` | SKUs ready to order | Authorized distribution SKUs actively available to order | Brief: Operations / Distribution section |
+| `753K` | B2B Catalog SKUs | Full B2B catalog including unlisted and seasonal SKUs | Brief: Technology / Platform section |
+| `4.32M` | Products in database / live catalog | Total products indexed across all tracked marketplaces | Brief: Shopping Agent / Platform Scale |
+| `5M+` | SKUs indexed by Shopping Agent | All SKUs scanned and indexed by the AI agent, including competitor products | Brief: Shopping Agent capabilities |
+
+### Responsibility boundary
+These numbers were provided by the client (Supersonic Brick LLC) via the challenge brief and capability outline. The frontend team has labelled each number as precisely as the brief allows. Discrepancies in scope definition, if any, are a brief-level issue and require business sign-off to resolve — they cannot be corrected at the frontend layer.
+
+---
+
 ## Technology — AI Agent Cards (Agent 05–07)
 
 ### Coming Soon placeholder display
