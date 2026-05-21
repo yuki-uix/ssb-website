@@ -39,7 +39,7 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
       whileInView="visible"
       viewport={{ once: true, margin: '-40px' }}
       custom={index}
-      className="group relative flex flex-col gap-4 p-8"
+      className="group relative flex flex-col gap-4 p-8 min-h-[220px]"
       style={{
         background: hovered ? 'rgba(59,130,246,0.06)' : 'var(--background)',
         boxShadow: service.featured ? 'inset 0 2px 0 #3B82F6' : 'none',

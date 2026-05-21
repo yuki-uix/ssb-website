@@ -6,6 +6,51 @@ import { AI_AGENTS } from '@/lib/constants'
 import type { Agent } from '@/lib/constants'
 import { fadeUp, ease } from '@/lib/animations'
 
+// ─── AgentStatusWidget (featured card only) ───────────────────────────────────
+
+function AgentStatusWidget() {
+  return (
+    <div
+      className="rounded-xl p-5 flex flex-col justify-between shrink-0"
+      style={{
+        background: 'rgba(59,130,246,0.05)',
+        border: '1px solid rgba(59,130,246,0.18)',
+        minWidth: 220,
+      }}
+    >
+      <div>
+        <p
+          className="text-xs font-semibold tracking-widest uppercase mb-5"
+          style={{ color: '#94A3B8' }}
+        >
+          Platform Scale
+        </p>
+        <div className="space-y-3">
+          {[
+            { label: 'SKUs Indexed',     value: '5M+'   },
+            { label: 'Products in DB',   value: '4.32M' },
+            { label: 'Brands Tracked',   value: '28K'   },
+          ].map(({ label, value }) => (
+            <div key={label} className="flex items-center justify-between gap-4">
+              <span className="text-xs" style={{ color: '#94A3B8' }}>{label}</span>
+              <span className="text-sm font-bold text-white tabular-nums">{value}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="mt-5 pt-4" style={{ borderTop: '1px solid rgba(255,255,255,0.07)' }}>
+        <div className="flex flex-col gap-1 mb-2">
+          <span className="text-xs" style={{ color: '#94A3B8' }}>Amazon Account Health</span>
+          <span className="text-xs font-semibold" style={{ color: '#10B981' }}>1000 / 1000</span>
+        </div>
+        <div className="rounded-full overflow-hidden" style={{ height: '3px', background: 'rgba(255,255,255,0.07)' }}>
+          <div className="h-full rounded-full" style={{ width: '100%', background: 'linear-gradient(90deg, #10B981, #3B82F6)' }} />
+        </div>
+      </div>
+    </div>
+  )
+}
+
 // ─── AgentCard ────────────────────────────────────────────────────────────────
 
 function AgentCard({ agent, index, featured = false }: { agent: Agent; index: number; featured?: boolean }) {
@@ -48,67 +93,76 @@ function AgentCard({ agent, index, featured = false }: { agent: Agent; index: nu
         onMouseLeave: handleMouseLeave,
       })}
     >
-      {/* Category badge */}
-      <span
-        className="self-start text-xs font-medium px-2.5 py-1 rounded-full mb-4"
-        style={{
-          background: isPlaceholder ? 'rgba(255,255,255,0.04)' : 'rgba(59,130,246,0.10)',
-          color: isPlaceholder ? '#64748B' : '#93C5FD',
-          border: `1px solid ${isPlaceholder ? 'rgba(255,255,255,0.06)' : 'rgba(59,130,246,0.25)'}`,
-          letterSpacing: '0.04em',
-        }}
-      >
-        {agent.category}
-      </span>
+      {/* Featured: left text + right status widget; normal: single column */}
+      <div className={featured ? 'flex flex-col lg:flex-row gap-6 h-full' : 'flex flex-col h-full'}>
+        <div className="flex flex-col flex-1">
+          {/* Category badge */}
+          <span
+            className="self-start text-xs font-medium px-2.5 py-1 rounded-full mb-4"
+            style={{
+              background: isPlaceholder ? 'rgba(255,255,255,0.04)' : 'rgba(59,130,246,0.10)',
+              color: isPlaceholder ? '#64748B' : '#93C5FD',
+              border: `1px solid ${isPlaceholder ? 'rgba(255,255,255,0.06)' : 'rgba(59,130,246,0.25)'}`,
+              letterSpacing: '0.04em',
+            }}
+          >
+            {agent.category}
+          </span>
 
-      {/* Agent name */}
-      <h3
-        className="font-bold mb-1"
-        style={{
-          fontSize: featured ? 'clamp(1.25rem, 2vw, 1.5rem)' : '1.125rem',
-          color: isPlaceholder ? '#94A3B8' : '#FFFFFF',
-          letterSpacing: '-0.01em',
-        }}
-      >
-        {agent.name}
-      </h3>
+          {/* Agent name */}
+          <h3
+            className="font-bold mb-1"
+            style={{
+              fontSize: featured ? 'clamp(1.25rem, 2vw, 1.5rem)' : '1.125rem',
+              color: isPlaceholder ? '#94A3B8' : '#FFFFFF',
+              letterSpacing: '-0.01em',
+            }}
+          >
+            {agent.name}
+          </h3>
 
-      {/* Tagline */}
-      <p
-        className="mb-3 text-sm font-medium"
-        style={{ color: isPlaceholder ? '#94A3B8' : '#CBD5E1' }}
-      >
-        {agent.tagline}
-      </p>
+          {/* Tagline */}
+          <p
+            className="mb-3 text-sm font-medium"
+            style={{ color: isPlaceholder ? '#94A3B8' : '#CBD5E1' }}
+          >
+            {agent.tagline}
+          </p>
 
-      {/* Description */}
-      {!isPlaceholder && (
-        <p
-          className="text-sm leading-relaxed mb-4"
-          style={{ color: '#94A3B8' }}
-        >
-          {agent.description}
-        </p>
-      )}
-
-      {/* Bullets */}
-      {!isPlaceholder && (
-        <ul className="mt-auto space-y-2">
-          {agent.bullets.map((bullet) => (
-            <li
-              key={bullet}
-              className="flex items-start gap-2 text-sm"
+          {/* Description */}
+          {!isPlaceholder && (
+            <p
+              className="text-sm leading-relaxed mb-4"
               style={{ color: '#94A3B8' }}
             >
-              <span
-                className="mt-1.5 shrink-0 w-1 h-1 rounded-full"
-                style={{ background: '#3B82F6' }}
-              />
-              {bullet}
-            </li>
-          ))}
-        </ul>
-      )}
+              {agent.description}
+            </p>
+          )}
+
+
+          {/* Bullets */}
+          {!isPlaceholder && (
+            <ul className="mt-auto space-y-2">
+              {agent.bullets.map((bullet) => (
+                <li
+                  key={bullet}
+                  className="flex items-start gap-2 text-sm"
+                  style={{ color: '#94A3B8' }}
+                >
+                  <span
+                    className="mt-1.5 shrink-0 w-1 h-1 rounded-full"
+                    style={{ background: '#3B82F6' }}
+                  />
+                  {bullet}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+
+        {/* Right column: status widget (featured card only) */}
+        {featured && <AgentStatusWidget />}
+      </div>
 
       {/* Bottom accent on hover — disabled for placeholder cards */}
       {!isPlaceholder && (
