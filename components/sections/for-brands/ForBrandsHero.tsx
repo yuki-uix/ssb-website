@@ -154,12 +154,12 @@ export default function ForBrandsHero() {
 
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator — hidden on mobile to avoid overlap with CTA button */}
       <motion.div
         initial={{ opacity: 0, y: -6 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 1.0, ease: 'easeOut' }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center gap-1.5"
         aria-hidden="true"
       >
         <span
