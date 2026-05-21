@@ -95,7 +95,7 @@ export default function TechHero() {
           variants={fadeUp}
           initial="hidden"
           animate="visible"
-          custom={1}
+          custom={0}
           className="font-bold mb-6"
           style={{
             fontSize: 'var(--text-h1)',
@@ -122,7 +122,7 @@ export default function TechHero() {
           variants={fadeUp}
           initial="hidden"
           animate="visible"
-          custom={2}
+          custom={0.1}
           className="mx-auto"
           style={{
             fontSize: 'var(--text-body)',
@@ -139,7 +139,7 @@ export default function TechHero() {
           variants={fadeUp}
           initial="hidden"
           animate="visible"
-          custom={3}
+          custom={0.2}
           className="flex items-center justify-center gap-6 mt-10 flex-wrap"
         >
           {['Shopping Agent', 'claim.ai', 'panner.ai', 'refinery.ai'].map((name) => (

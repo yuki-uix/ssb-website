@@ -300,8 +300,9 @@ export default function HomeHero() {
               variants={fadeUp}
               initial="hidden"
               animate="visible"
-              custom={0.1}
-              className="text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.05] tracking-tight text-white mb-6"
+              custom={0}
+              className="text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.05] tracking-tight mb-6"
+              style={{ color: '#FFFFFF' }}
             >
               A New Kind of
               <br />
