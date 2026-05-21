@@ -263,12 +263,12 @@ export default function AIAgentCards() {
         }}
       >
         <span
-          className="text-xs font-semibold uppercase tracking-widest"
+          className="hidden sm:inline text-xs font-semibold uppercase tracking-widest"
           style={{ color: '#94A3B8' }}
         >
           In Development
         </span>
-        <div className="w-px h-4 shrink-0" style={{ background: 'rgba(255,255,255,0.12)' }} />
+        <div className="hidden sm:block w-px h-4 shrink-0" style={{ background: 'rgba(255,255,255,0.12)' }} />
         <span
           className="text-sm font-medium"
           style={{ color: '#CBD5E1' }}
