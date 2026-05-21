@@ -247,16 +247,16 @@ const fadeUp = {
 
 export default function HomeHero() {
   return (
-    <section className="relative min-h-screen flex items-start md:items-center overflow-hidden">
+    <section className="relative flex items-start overflow-hidden">
       {/* Background grid — subtle, left side only */}
       <div className="absolute inset-0 bg-grid opacity-30" />
 
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pt-28 pb-16 md:py-32">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pt-28 pb-16 md:pt-28 md:pb-24">
 
         {/* Hero row — Text + Shopping Agent */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 lg:gap-14 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 lg:gap-14 items-start">
 
           {/* Left — Text + primary CTA */}
           <div className="relative flex flex-col">
@@ -288,9 +288,10 @@ export default function HomeHero() {
                   border: '1px solid rgba(59,130,246,0.4)',
                   color: '#94A3B8',
                   background: 'rgba(59,130,246,0.08)',
+                  letterSpacing: '0.06em',
                 }}
               >
-                ✦ {HERO.badge}
+                <span style={{ color: '#60A5FA' }}>✦</span>{' '}{HERO.badge}
               </span>
             </motion.div>
 

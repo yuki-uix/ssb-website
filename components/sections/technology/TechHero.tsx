@@ -25,7 +25,7 @@ export default function TechHero() {
   })
 
   return (
-    <section ref={containerRef} className="relative min-h-[80vh] flex items-center justify-center overflow-hidden bg-grid py-16">
+    <section ref={containerRef} className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-grid py-16">
       {/* Static ambient background glow */}
       <div
         className="absolute inset-0 pointer-events-none"
@@ -83,9 +83,10 @@ export default function TechHero() {
               border: '1px solid rgba(59,130,246,0.4)',
               color: '#94A3B8',
               background: 'rgba(59,130,246,0.08)',
+              letterSpacing: '0.06em',
             }}
           >
-            ✦ {TECH_HERO.badge}
+            <span style={{ color: '#60A5FA' }}>✦</span>{' '}{TECH_HERO.badge}
           </span>
         </motion.div>
 
@@ -132,6 +133,38 @@ export default function TechHero() {
         >
           {TECH_HERO.subheadline}
         </motion.p>
+
+        {/* Agent status strip */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          custom={3}
+          className="flex items-center justify-center gap-6 mt-10 flex-wrap"
+        >
+          {['Shopping Agent', 'claim.ai', 'panner.ai', 'refinery.ai'].map((name) => (
+            <div key={name} className="flex items-center gap-2">
+              <div className="w-1.5 h-1.5 rounded-full bg-[#10B981] animate-pulse shrink-0" />
+              <span
+                className="text-xs font-medium"
+                style={{ color: '#94A3B8', letterSpacing: '0.02em' }}
+              >
+                {name}
+              </span>
+            </div>
+          ))}
+          <div
+            className="text-xs px-2.5 py-1 rounded-full"
+            style={{
+              background: 'rgba(16,185,129,0.08)',
+              border: '1px solid rgba(16,185,129,0.2)',
+              color: '#6EE7B7',
+              letterSpacing: '0.04em',
+            }}
+          >
+            4 / 4 online
+          </div>
+        </motion.div>
 
       </div>
     </section>
