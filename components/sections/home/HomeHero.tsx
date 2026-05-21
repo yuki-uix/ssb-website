@@ -170,7 +170,7 @@ function ShoppingAgentMockup() {
         {current.products.map((product, i) => (
           <div
             key={product.sku}
-            className="flex items-center gap-3 p-3 rounded-xl"
+            className={`flex items-center gap-3 p-3 rounded-xl${i === 2 ? ' hidden lg:flex' : ''}`}
             style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}
           >
             <div
