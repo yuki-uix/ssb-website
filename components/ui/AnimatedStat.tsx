@@ -1,44 +1,28 @@
 'use client'
 
-import { useRef, useState, useEffect } from 'react'
-import { useInView, animate } from 'framer-motion'
+import { useRef } from 'react'
 
 // ─── AnimatedStat ─────────────────────────────────────────────────────────────
-// Counts 0 → numericValue on viewport entry, staggered by `index`.
-// Falls back to displaying numericValue if animation never triggers.
+// Displays numericValue statically; entrance animation is handled by the
+// parent's fadeUpSubtle variant. No count-from-zero so there's no "0" flash.
 
 export function AnimatedStat({
   numericValue,
   suffix,
   decimals,
-  index,
   prominent = true,
 }: {
   numericValue: number
   suffix: string
   decimals: number
-  index: number
+  index?: number
   /** prominent=true (default): full-size blue gradient. false: smaller, muted. */
   prominent?: boolean
 }) {
   const ref = useRef<HTMLSpanElement>(null)
-  const isInView = useInView(ref, { once: true, margin: '-60px' })
-  // Start at final value so SSR / no-JS / slow connection never shows 0
-  const [count, setCount] = useState(numericValue)
-
-  useEffect(() => {
-    if (!isInView) return
-    const controls = animate(0, numericValue, {
-      duration: 1.6,
-      delay: index * 0.08,
-      ease: [0.25, 0.46, 0.45, 0.94],
-      onUpdate: (v) => setCount(v),
-    })
-    return () => controls.stop()
-  }, [isInView, numericValue, index])
 
   const formatted =
-    decimals > 0 ? count.toFixed(decimals) : Math.round(count).toString()
+    decimals > 0 ? numericValue.toFixed(decimals) : Math.round(numericValue).toString()
 
   return (
     <span

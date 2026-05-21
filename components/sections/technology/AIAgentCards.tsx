@@ -249,30 +249,44 @@ export default function AIAgentCards() {
         </div>
       </div>
 
-      {/* Group: In Development */}
-      <p
-        className="uppercase font-medium mb-4"
+      {/* Group: In Development — compact teaser row */}
+      <motion.div
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-40px' }}
+        custom={5}
+        className="flex items-center gap-4 px-6 py-4 rounded-2xl"
         style={{
-          fontSize: 'var(--text-overline)',
-          letterSpacing: 'var(--tracking-overline)',
-          color: '#94A3B8',
+          background: 'rgba(255,255,255,0.04)',
+          border: '1px solid rgba(255,255,255,0.08)',
         }}
       >
-        In Development
-      </p>
-      <div
-        className="rounded-2xl overflow-hidden"
-        style={{ background: 'rgba(255,255,255,0.07)', gap: '1px', display: 'grid' }}
-      >
-        <div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
-          style={{ gap: '1px' }}
+        <span
+          className="text-xs font-semibold uppercase tracking-widest"
+          style={{ color: '#94A3B8' }}
         >
-          {development.map((agent, i) => (
-            <AgentCard key={agent.name} agent={agent} index={i + 4} />
-          ))}
-        </div>
-      </div>
+          In Development
+        </span>
+        <div className="w-px h-4 shrink-0" style={{ background: 'rgba(255,255,255,0.12)' }} />
+        <span
+          className="text-sm font-medium"
+          style={{ color: '#CBD5E1' }}
+        >
+          +{development.length} agents in development
+        </span>
+        <span
+          className="ml-auto text-xs px-2.5 py-1 rounded-full shrink-0"
+          style={{
+            background: 'rgba(59,130,246,0.08)',
+            border: '1px solid rgba(59,130,246,0.2)',
+            color: '#93C5FD',
+            letterSpacing: '0.04em',
+          }}
+        >
+          Coming Soon
+        </span>
+      </motion.div>
 
     </section>
   )

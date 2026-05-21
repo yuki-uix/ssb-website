@@ -170,7 +170,7 @@ function ShoppingAgentMockup() {
         {current.products.map((product, i) => (
           <div
             key={product.sku}
-            className="flex items-center gap-3 p-3 rounded-xl"
+            className={`flex items-center gap-3 p-3 rounded-xl${i === 2 ? ' hidden lg:flex' : ''}`}
             style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}
           >
             <div
@@ -300,8 +300,9 @@ export default function HomeHero() {
               variants={fadeUp}
               initial="hidden"
               animate="visible"
-              custom={0.1}
-              className="text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.05] tracking-tight text-white mb-6"
+              custom={0}
+              className="text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.05] tracking-tight mb-6"
+              style={{ color: '#FFFFFF' }}
             >
               A New Kind of
               <br />

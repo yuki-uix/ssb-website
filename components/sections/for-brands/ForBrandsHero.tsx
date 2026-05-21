@@ -95,7 +95,7 @@ export default function ForBrandsHero() {
           variants={fadeUp}
           initial="hidden"
           animate="visible"
-          custom={1}
+          custom={0}
           className="font-bold mb-3"
           style={{
             fontSize: 'var(--text-h1)',
@@ -107,21 +107,18 @@ export default function ForBrandsHero() {
           {BRANDS_HERO.headline}
         </motion.h1>
 
-        {/* Gradient sub-headline */}
+        {/* Accent sub-headline — solid color for reliable readability on dark bg */}
         <motion.p
           variants={fadeUp}
           initial="hidden"
           animate="visible"
-          custom={2}
+          custom={0.1}
           className="font-bold mb-8"
           style={{
             fontSize: 'var(--text-h1)',
             lineHeight: 'var(--leading-h1)',
             letterSpacing: 'var(--tracking-h1)',
-            background: 'linear-gradient(135deg, #60A5FA 0%, #38BDF8 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
+            color: '#60A5FA',
           }}
         >
           {BRANDS_HERO.headlineAccent}
@@ -132,7 +129,7 @@ export default function ForBrandsHero() {
           variants={fadeUp}
           initial="hidden"
           animate="visible"
-          custom={3}
+          custom={0.2}
           className="mb-10 mx-auto"
           style={{
             fontSize: 'var(--text-body)',
@@ -149,7 +146,7 @@ export default function ForBrandsHero() {
           variants={fadeUp}
           initial="hidden"
           animate="visible"
-          custom={4}
+          custom={0.3}
           className="flex items-center justify-center gap-4"
         >
           <GradientButton href="/contact" size="sm">Get in Touch</GradientButton>
