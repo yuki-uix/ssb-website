@@ -25,9 +25,37 @@
 A brand serious about handing over inventory and marketplace access will verify before signing:
 - **About page:** No founders, team, company history, or LinkedIn presence
 - **Customer evidence:** Hyland's and Hello Bello named in Technology page body copy — but no case study page, no testimonials, no "used with permission" attribution. Named customers without supporting evidence read as borrowed credibility
-- **Legal:** ~~No Terms of Service, no Privacy Policy~~ → **Mitigation applied (#95):** Privacy Policy and Terms of Service placeholder links added to footer. Routes (`/privacy`, `/terms`) return 404 — presence signals intent; content requires legal review
+- **Legal:** ~~No Terms of Service, no Privacy Policy~~ → see dedicated section below ↓
 - **Credentials:** No Amazon SPN certification badge, no DUNS/EIN reference, no physical address (warehouses described as "DE/NJ/NY" with no street address)
 - **Contact:** Only `ai@supersonicbrick.com` + WeChat `Haoruiiii` — no phone number, no company address. For a company claiming 33K sqft of owned warehouse, a single WeChat handle as the primary contact erodes all credibility
+
+---
+
+## 🟡 Legal pages — missing content, 404 routes
+
+### Brief / Outline coverage
+**Neither the challenge brief nor the site outline mentions Privacy Policy or Terms of Service.** No content, no requirement, no placeholder copy was provided by the client.
+
+### Why the links exist anyway
+Footer links to `/privacy` and `/terms` were added proactively in PR #95. Rationale: a B2B website without any legal footer links signals an unfinished or informal operation. For a company asking brands to hand over inventory and marketplace access, the absence of these pages is a trust signal problem — not just a compliance one.
+
+### Actual impact of the current 404
+A 404 is **worse than no link**. It tells the visitor:
+- The company knows these pages should exist
+- But hasn't bothered to create them
+
+For an evaluator, a dead legal link is an active negative signal. It reads as "we added the link to look legitimate, but didn't follow through."
+
+### Current mitigation
+**Placeholder pages at `/privacy` and `/terms`** — minimal pages that acknowledge the content is forthcoming and direct inquiries to `ai@supersonicbrick.com`. This converts a 404 (broken) into a stub (intentional, under construction).
+
+### Responsibility boundary
+Actual legal content (data collection practices, governing law, liability terms) **must be written by SSB's legal counsel** — it cannot be invented at the frontend layer. The placeholder pages created here are a UX and trust signal fix only, not legal documents.
+
+### Status
+- [x] Footer links added (PR #95)
+- [x] Placeholder pages created (replaces 404 with stub)
+- [ ] Real legal content — requires SSB legal team input before any live launch
 
 ---
 
