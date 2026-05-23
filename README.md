@@ -24,14 +24,14 @@ Marketing website for **Supersonic Supply (SSB)**, a next-generation US brand di
 - Navbar with active state, desktop nav, and mobile hamburger overlay (`AnimatePresence`, scroll lock, Escape key, route-change auto-close)
 
 **Pages**
-- Homepage: Hero with Shopping Agent mockup, Metrics Bar, Pillars, audience routing strip, CTA
+- Homepage: Hero with Shopping Agent mockup, Pillars, Metrics Bar, CTA
 - For Brands: Hero with bouncing physics orbs, Services Grid, CTA
 - Technology: Hero, Metrics Bar, AI Agent Cards, CTA
 - Contact: Form with ambient glow treatment
 
 **Interactions**
 - `useBouncingOrb` — custom hook using `useAnimationFrame` + velocity vectors + wall-reflection physics; delta-capped at 50ms to prevent jumps after tab switches; pauses on `prefers-reduced-motion`
-- `AnimatedStat` — framer-motion imperative `animate()` counter with `useState(finalValue)` fallback; never shows 0 on slow connections or IntersectionObserver misses
+- `AnimatedStat` — displays final value statically; no count-from-zero animation (removed to eliminate "0 flash" on viewport entry). Entrance handled by parent `fadeUp` variant
 - `GradientButton` shared component with `size` and `className` props
 - Staggered `fadeUp` entrance animations across all sections
 
@@ -64,8 +64,8 @@ Revised to equal-width 3-col grid. The blue top accent line (`box-shadow: inset 
 ### `useBouncingOrb` over CSS animation
 CSS `@keyframes` can't do wall-reflection physics. The hook uses `useAnimationFrame` with velocity vectors and boundary detection. Upper bounds clamped with `Math.max(0, dimension - orbSize)` to prevent negative travel space causing every-frame velocity flip (orb flicker at small container sizes).
 
-### AnimatedStat: fallback-first counter
-`useMotionValue(0)` as initial state meant any IntersectionObserver miss — slow connection, SSR, mid-page navigation — would leave the metric stuck at "0". Changed to `useState(numericValue)` so the correct number is always visible; the count-up animation is a progressive enhancement, not a requirement.
+### AnimatedStat: static display over count-from-zero
+Initial implementation used framer-motion `animate(0 → value)` with an `onUpdate` callback. The bug: `animate()` immediately calls `onUpdate(0)` on first frame, overriding `useState(numericValue)` and causing a visible "0 flash" before the counter started. Removed the animation entirely — the final value renders directly, entrance is handled by the parent `fadeUp` variant. Simpler, no flash, same visual result.
 
 ### Brief data inconsistencies: document, don't silently fix
 The source brief contained four distinct SKU figures (340K / 753K / 4.32M / 5M+), a conflicting AI agent count (7 claimed, 4 with real content), and an internal contradiction in refinery.ai's dimension count (8 vs 11 dimensions). Documented in [`REVIEW_NOTES.md`](./REVIEW_NOTES.md) rather than silently corrected — numbers originate from the business and any change requires business verification, not a frontend judgment call.
@@ -129,7 +129,7 @@ Raw report: [`docs/lighthouse.json`](./docs/lighthouse.json)
 ### Known limitations
 - **Minimum supported width: 375px.** 320px (iPhone SE 1st gen, 2016) is not in scope — market share < 1% for target B2B audience.
 - **Touch hover states.** `onMouseEnter` / `onMouseLeave` handlers do not fire on touch devices. Cards and nav links will not show hover styles on mobile. This is a browser limitation, not a bug.
-- **Agent 05–07 placeholder content.** Brief provided content for 4 AI agents only; 3 entries are labelled "Coming Soon" per the source material.
+- **Agent 05–07 not shown as cards.** Brief provided content for 4 AI agents only. Rather than rendering 3 empty "Coming Soon" cards (which signals an unfinished product), the Technology page shows a single compact "+3 agents in development" teaser row — present but not foregrounded.
 - **TypeScript:** `npx tsc --noEmit` passes with zero errors.
 
 ---

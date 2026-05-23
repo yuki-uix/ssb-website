@@ -126,10 +126,10 @@ These numbers were provided by the client (Supersonic Brick LLC) via the challen
 
 ### Coming Soon placeholder display
 
-**Current state:** Agent 05/06/07 are rendered as visible cards with "Coming Soon" category and "Details to be announced." content. Brief provides no real content for these three agents.
+**Original state:** Agent 05/06/07 were rendered as visible cards with "Coming Soon" category and "Details to be announced." content. Brief provides no real content for these three agents.
 
 **Design review finding:** Showing 3 empty placeholder cards signals an unfinished product. For a B2B operator, this reads as "early stage" rather than building anticipation. It also directly contradicts the "7 AI Agents in Production" claim in the hero badge and homepage metrics.
 
-**Recommended decision:** Remove placeholder cards from the rendered UI. Show only the 4 agents with real content. Update hero badge and metrics to reflect "4 AI Agents in Production" or add a separate "3 more coming" treatment that doesn't occupy full card slots.
+**Decision taken:** 3 placeholder cards removed. Replaced with a single compact teaser row: "+3 agents in development · Coming Soon". The 4 production agents are foregrounded; the pipeline is acknowledged without occupying full card slots.
 
-**Status:** Flagged — pending PM decision. Tracked in issue #74 scope or as a standalone content fix.
+**Status:** ✅ Resolved — implemented in PR #108.
