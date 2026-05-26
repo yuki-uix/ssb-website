@@ -306,7 +306,16 @@ export default function HomeHero() {
             >
               A New Kind of
               <br />
-              <span className="text-gradient-animate">Brand Distributor.</span>
+              <span style={{
+                display: 'inline-block',
+                backgroundImage: 'linear-gradient(135deg, #3B82F6, #0EA5E9, #2563EB, #0EA5E9, #3B82F6)',
+                backgroundSize: '300% 300%',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                color: 'transparent',
+                animation: 'gradient-drift 16s ease-in-out infinite',
+              }}>Brand Distributor.</span>
             </motion.h1>
 
             {/* Subheadline */}

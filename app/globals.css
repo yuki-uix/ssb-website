@@ -137,11 +137,13 @@ body {
 }
 
 .text-gradient-animate {
+  display: inline-block;
   background: linear-gradient(135deg, #3B82F6, #0EA5E9, #2563EB, #0EA5E9, #3B82F6);
   background-size: 300% 300%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  color: transparent;
   animation: gradient-drift 16s ease-in-out infinite;
 }
 
